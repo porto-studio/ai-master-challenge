@@ -34,3 +34,32 @@ Este dataset (RavenStack) não tem esse nível de detalhe — só um campo `refe
 - Depois de descobrir o investimento mensal em tráfego, calcular com precisão o **custo de aquisição por cliente (CAC)**.
 - Calcular quanto esse cliente dá de lucro ao longo do tempo (**LTV**), inclusive considerando a possibilidade de cancelar e voltar a comprar depois (reativação).
 - O LTV é fundamental principalmente por causa do investimento: ele impacta diretamente o lucro final da empresa, e isso muda a leitura final dos números de churn.
+
+## Nota sobre a ordem ideal (14/09/2026)
+
+**Isso deveria ter sido investigado antes de qualquer análise da tabela de churn — não depois.** Não foi feito nessa ordem nesta entrega porque a análise da tabela de assinaturas já estava em andamento quando esse ponto foi levantado, e terminar o que já estava em progresso foi mais rápido do que parar e recomeçar do zero. A exceção à regra "origem primeiro" é justamente essa: quando a análise já em curso está perto de terminar e é mais rápida de concluir do que reiniciar o processo. Fora esse caso, o ideal é sempre confirmar a origem/atribuição antes de tirar qualquer conclusão da tabela.
+
+## Simulação numérica (ferramenta `dashboard-churn-005-trafego`, dado real do dataset)
+
+Para provar o argumento com números, construí uma ferramenta que separa o faturamento real por `referral_source` e simula um investimento hipotético em Ads (o dataset não tem valor de investimento nenhum — isso é sempre um valor digitado por mim na hora).
+
+**Faturamento histórico real por origem** (24 meses cobertos pelo dataset, jan/2023 a dez/2024):
+- organic: 114 contas, US$ 2.798.707 (24,7%)
+- other: 103 contas, US$ 2.377.728 (21,0%)
+- ads: 98 contas, US$ 2.146.619 (18,9%)
+- partner: 89 contas, US$ 2.094.243 (18,5%)
+- event: 96 contas, US$ 1.921.450 (16,9%)
+
+**Cenário A x B, simulando US$ 50.000/mês em Ads (US$ 1.200.000 no total dos 24 meses):**
+- Cenário A (atribuição como está marcada): faturamento do Ads = US$ 2.146.619, lucro simulado = US$ 946.619, CAC simulado ≈ US$ 14.118 (85 clientes novos sem trial).
+- Cenário B (simulando que "organic" é na verdade Ads mal atribuído): faturamento somado = US$ 4.945.326, lucro simulado = US$ 3.745.326, CAC simulado cai pra ≈ US$ 6.780 (177 clientes novos).
+
+A leitura muda drasticamente entre os dois cenários com o MESMO investimento — é exatamente o ponto: sem confirmar a atribuição de origem, dá pra concluir coisas bem diferentes sobre o retorno do tráfego pago.
+
+## Prova de que isso não é teoria (repositório próprio, verificado)
+
+Antes de começar o desafio do G4, eu já tinha publicado um repositório próprio no GitHub sobre exatamente esse tema — feito pra aprender a mexer no GitHub, não pensado como currículo pro processo seletivo. Só que ele prova na prática o argumento acima: é uma ferramenta que uso no meu dia a dia (não é um projeto pro repositório do G4), que conecta Meta Ads, Hotmart e ROI, fazendo esse tipo de cálculo em tempo real — exatamente o cruzamento entre origem de tráfego, investimento e retorno que a análise acima defende.
+
+- Repositório: `porto-studio/dashboard-roi` — https://github.com/porto-studio/dashboard-roi (público, confirmado no ar)
+- Demo publicada: https://porto-studio.github.io/dashboard-roi/ (confirmado no ar, HTTP 200, em 14/09/2026)
+- Não foi construído pra este desafio — é a automação pessoal que já uso pra decisão de tráfego pago, e por coincidência aborda o mesmo problema que apareceu aqui ao analisar o dataset do RavenStack.
