@@ -6,8 +6,18 @@ __pycache__/
 *.pyc
 .DS_Store
 
-# dados brutos (não subir dataset completo nem dados pessoais/prints)
+# dados brutos e prints de tela ficam fora por padrão
 data/raw/
-*.csv
 *.xlsx
 prints/
+
+# CSV entra na regra de bloqueio por padrão — é o que evita subir planilha
+# com dado pessoal sem querer. As 3 exceções abaixo são os arquivos que a
+# entrega precisa para funcionar e para poder ser auditada:
+#   ravenstack_*.csv  → os 5 arquivos do dataset público do Kaggle (solution/dashboards/data/)
+#   ??_*.csv          → as 12 tabelas numeradas que sustentam o relatório (solution/tabelas/)
+#   painel_conta.csv  → o painel por conta do cruzamento uso × suporte
+*.csv
+!ravenstack_*.csv
+!??_*.csv
+!painel_conta.csv

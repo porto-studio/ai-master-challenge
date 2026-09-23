@@ -9,7 +9,7 @@ Este dataset (RavenStack) não tem esse nível de detalhe — só um campo `refe
 ## 01. Tráfego pago (Ads)
 
 - Qual o investimento de tráfego por mês e por ano?
-- Existe demarketing feito com algum bônus ou ângulo de promessa diferente? Um demarketing bem feito costuma funcionar muito bem pra high-ticket — esse público demora mais pra decidir, então precisa ver mais anúncios por um período mais longo, com motivos diferentes pra comprar.
+- Existe remarketing feito com algum bônus ou ângulo de promessa diferente? Um remarketing bem feito costuma funcionar muito bem pra high-ticket — esse público demora mais pra decidir, então precisa ver mais anúncios por um período mais longo, com motivos diferentes pra comprar.
 - Qual canal de investimento (Google Ads, Facebook Ads, X)? O canal influencia diretamente a qualidade do público e o churn:
   - **Google:** o usuário geralmente tem mais urgência — veio de uma busca ativa, tem mais chance de comprar porque precisa resolver um problema real, e tende a se manter usando.
   - **Facebook/Instagram:** o usuário é mais curioso — pode comprar por curiosidade ou só pra ver como funciona, sem ter o problema de verdade, e cancela logo em seguida por falta de necessidade real.
@@ -23,13 +23,13 @@ Este dataset (RavenStack) não tem esse nível de detalhe — só um campo `refe
   - Ex.: busca no Google por palavra-chave de tendência crescente tende a aumentar ao longo do tempo, mas depende da demanda do serviço.
   - Pra um serviço de tecnologia, a tendência já tende a ser temporária, só por isso.
   - YouTube tem comportamento diferente — pode viralizar, e nesse caso o pico de venda também pode acabar mais rápido.
-- **Nada disso é regra fixa** — são padrões que podem se aplicar, baseados na experiência prática dele com tráfego pago e estratégia, não em dado comprovado deste dataset específico.
+- **Nada disso é regra fixa** — são padrões que podem se aplicar, baseados na minha experiência prática com tráfego pago e estratégia, não em dado comprovado deste dataset específico.
 
-## 03. Partner
+## 03. Partner, event e other
 
 - Ainda não dá pra opinar sobre esse canal — precisaria entender melhor a origem desse tipo de cliente antes de ter uma posição.
 
-## CAC e LTV — o outro lado que fecha a conta
+## CAC e LTV — Em recorrencia é o outro lado que fecha a conta
 
 - Depois de descobrir o investimento mensal em tráfego, calcular com precisão o **custo de aquisição por cliente (CAC)**.
 - Calcular quanto esse cliente dá de lucro ao longo do tempo (**LTV**), inclusive considerando a possibilidade de cancelar e voltar a comprar depois (reativação).
