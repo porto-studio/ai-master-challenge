@@ -43,7 +43,7 @@ Efeito colateral útil: salvei os arquivos de teste com `;` em vez de `,` (padr�
 
 ## 4. As iterações — 5 ferramentas, cada uma com um motivo
 
-Cada versão nasceu de uma pergunta que a anterior não respondia. Todas estão em `solution/dashboards/`.
+Cada versão nasceu de uma pergunta que a anterior não respondia. **Publiquei só as duas últimas** (`solution/dashboards/`): a 004 já faz tudo o que a 002 e a 003 faziam, e subir as cinco obrigaria quem avalia a ler quase o mesmo código três vezes. As três primeiras continuam aqui na tabela porque o caminho é que importa.
 
 | # | O que mudou | Por que |
 |---|---|---|

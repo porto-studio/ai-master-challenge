@@ -341,4 +341,4 @@ Saída completa: `saidas_dos_scripts/modelo_out.txt`. Código: `scripts/modelo.p
 | `scripts/` | Código que gera todos os números, os gráficos e o PDF (Python) |
 | `saidas_dos_scripts/` | Saída completa de cada script |
 | `cruzamento-uso-x-tickets/` | `feature_usage` × `support_tickets`: 7 scripts, saída bruta e o resultado em `RESULTADO_CRUZAMENTO.md` |
-| `dashboards/` | As 5 ferramentas interativas + `data/` com os 5 CSVs do Kaggle |
+| `dashboards/` | As 2 ferramentas interativas + `data/` com os 5 CSVs do Kaggle |
