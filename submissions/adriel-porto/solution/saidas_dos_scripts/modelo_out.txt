@@ -1,0 +1,33 @@
+
+######## ALVO: churn_events nos 90 dias seguintes
+  snapshot 2024-03-31: 283 contas, positivos 61 (21.6%)
+  snapshot 2024-06-30: 348 contas, positivos 86 (24.7%)
+  snapshot 2024-09-30: 420 contas, positivos 124 (29.5%)
+  VALIDACAO TEMPORAL (treina mar+jun, testa set->dez): AUC 0.525 | lift top20% 1.09x, captura 22% dos positivos
+  AUC de ranking aleatorio: media 0.500, 95% entre 0.443 e 0.556
+    baseline so churns_anteriores: AUC 0.477
+    baseline so tenure: AUC 0.323
+    baseline so mrr_A: AUC 0.412
+    baseline so assinaturas_ativas: AUC 0.421
+    baseline so tendencia_uso: AUC 0.485
+    baseline so satisf_media (inv): AUC 0.509
+    baseline so erro_por_uso: AUC 0.546
+  pesos padronizados (top 12): satisf_ausente -0.47 | tickets_90d -0.47 | plano_Pro -0.39 | plano_Enterprise -0.32 | plano_Basic -0.28 | tenure_meses -0.25 | churns_anteriores -0.22 | auto_renew -0.19 | ind_FinTech -0.17 | ref_other -0.16 | beta_share -0.14 | ind_DevTools +0.13
+  AUC com alvo embaralhado no treino (30x): media 0.487, max 0.582
+  scores em 31/12/2024 salvos: 500 contas
+
+######## ALVO: assinatura paga encerrada (churn_flag) nos 90 dias seguintes
+  snapshot 2024-03-31: 283 contas, positivos 32 (11.3%)
+  snapshot 2024-06-30: 348 contas, positivos 49 (14.1%)
+  snapshot 2024-09-30: 420 contas, positivos 154 (36.7%)
+  VALIDACAO TEMPORAL (treina mar+jun, testa set->dez): AUC 0.546 | lift top20% 1.23x, captura 25% dos positivos
+  AUC de ranking aleatorio: media 0.500, 95% entre 0.435 e 0.559
+    baseline so churns_anteriores: AUC 0.458
+    baseline so tenure: AUC 0.379
+    baseline so mrr_A: AUC 0.494
+    baseline so assinaturas_ativas: AUC 0.509
+    baseline so tendencia_uso: AUC 0.484
+    baseline so satisf_media (inv): AUC 0.473
+    baseline so erro_por_uso: AUC 0.498
+  pesos padronizados (top 12): plano_Pro -0.58 | plano_Basic -0.55 | mrr_A_log +0.54 | beta_share -0.38 | plano_Enterprise -0.33 | assinaturas_ativas +0.32 | ind_DevTools +0.24 | tenure_meses -0.23 | seats_log -0.18 | trial_atual -0.18 | mrr_B_log -0.16 | ind_HealthTech -0.14
+  AUC com alvo embaralhado no treino (30x): media 0.503, max 0.593

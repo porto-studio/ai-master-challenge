@@ -1,0 +1,9 @@
+periodo,signups,contas_pagas_ativas_inicio,mrr_ativo_inicio,assinaturas_pagas_novas,mrr_novo,eventos_churn,contas_com_evento,eventos_por_conta_ativa,assinaturas_pagas_encerradas,mrr_encerrado,pct_mrr_encerrado_sobre_inicio,pct_mrr_encerrado_sobre_inicio_mais_novo
+2023-T1,55,0,0,27,41648,6,6,,0,0,,0.0
+2023-T2,54,19,41648,88,202694,11,11,0.579,2,1421,3.4,0.6
+2023-T3,53,64,244023,168,402265,19,17,0.297,2,914,0.4,0.1
+2023-T4,65,119,644272,272,667001,37,36,0.311,11,49160,7.6,3.7
+2024-T1,56,187,1283939,396,1064291,54,50,0.289,22,50138,3.9,2.1
+2024-T2,65,255,2311365,576,1616165,92,77,0.361,33,59026,2.6,1.5
+2024-T3,72,334,3863566,937,2348608,130,107,0.389,64,146668,3.8,2.4
+2024-T4,80,414,6062710,1758,4996075,251,180,0.606,274,871812,14.4,7.9

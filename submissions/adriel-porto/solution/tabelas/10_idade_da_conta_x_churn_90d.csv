@@ -1,0 +1,9 @@
+escopo,idade_da_conta,conta_snapshots,com_evento_90d,pct_evento_90d,ic95_min,ic95_max,mrr_ativo,mrr_perdido_90d,pct_mrr_perdido_90d
+todos os snapshots (jun/23 a set/24),0-3 meses,365,119,32.6,28.0,37.6,1277214,53599,4.2
+todos os snapshots (jun/23 a set/24),3-6 meses,347,76,21.9,17.9,26.5,2720115,88059,3.2
+todos os snapshots (jun/23 a set/24),6-12 meses,511,103,20.2,16.9,23.9,5691816,240828,4.2
+todos os snapshots (jun/23 a set/24),12+ meses,326,56,17.2,13.5,21.6,4605177,111245,2.4
+sem o ultimo snapshot (exclui out-dez/24),0-3 meses,293,80,27.3,22.5,32.7,771291,26142,3.4
+sem o ultimo snapshot (exclui out-dez/24),3-6 meses,282,53,18.8,14.7,23.8,1887493,44490,2.4
+sem o ultimo snapshot (exclui out-dez/24),6-12 meses,390,70,17.9,14.5,22.1,3644554,86324,2.4
+sem o ultimo snapshot (exclui out-dez/24),12+ meses,164,27,16.5,11.6,22.9,1955639,49296,2.5

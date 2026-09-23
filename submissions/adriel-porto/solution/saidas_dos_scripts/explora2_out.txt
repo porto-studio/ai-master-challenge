@@ -1,0 +1,133 @@
+== definicoes de churn
+subs churn_flag True: 486 | com end_date: 486 | churn True sem end: 0 | end sem churn: 0
+  accounts.churn_flag: 110 | inter events 75 | inter flag 110 | inter no_active 0
+  churn_events: 352 | inter events 352 | inter flag 75 | inter no_active 0
+  subs: alguma churn_flag: 312 | inter events 227 | inter flag 72 | inter no_active 0
+  subs: ultima assinatura churn: 45 | inter events 34 | inter flag 11 | inter no_active 0
+  subs: nenhuma assinatura ativa em 31/12/24: 0 | inter events 0 | inter flag 0 | inter no_active 0
+
+== trimestre: base, entradas, churn
+tri | contas c/ assinatura paga ativa no inicio | MRR inicio | signups | eventos churn | subs pagas encerradas (churn) | MRR encerrado | % MRR perdido | contas que zeraram
+2023-T1 | 0 | 0 | 55 | 6 | 0 | 0 | 0.0% | 0
+2023-T2 | 19 | 41,648 | 54 | 11 | 2 | 1,421 | 3.4% | 0
+2023-T3 | 64 | 244,023 | 53 | 19 | 2 | 914 | 0.4% | 0
+2023-T4 | 119 | 644,272 | 65 | 37 | 11 | 49,160 | 7.6% | 1
+2024-T1 | 187 | 1,283,939 | 56 | 54 | 22 | 50,138 | 3.9% | 0
+2024-T2 | 255 | 2,311,365 | 65 | 92 | 33 | 59,026 | 2.6% | 0
+2024-T3 | 334 | 3,863,566 | 72 | 130 | 64 | 146,668 | 3.8% | 1
+2024-T4 | 414 | 6,062,710 | 80 | 251 | 274 | 871,812 | 14.4% | 0
+
+== dez/2024 efeito borda: eventos por dia dez/24 top
+[('2024-12-29', 7), ('2024-12-19', 7), ('2024-12-30', 6), ('2024-12-16', 6), ('2024-12-25', 6)]
+subs end_date em 2024-12-31: 24 | end_date em dez/24: 193
+eventos por mes 2024 / signups por mes 2024:
+  2024-01 20 16 134
+  2024-02 10 13 152
+  2024-03 24 27 186
+  2024-04 25 22 193
+  2024-05 27 22 245
+  2024-06 40 21 248
+  2024-07 35 26 330
+  2024-08 42 21 337
+  2024-09 53 25 440
+  2024-10 66 31 504
+  2024-11 68 32 612
+  2024-12 117 17 953
+
+== uso por trimestre (CEO: uso cresceu)
+tri | registros | usage_count | contas usando | uso/conta | erros/uso % | horas
+2023-T1 | 3142 | 31400 | 497 | 63.2 | 5.72% | 2663
+2023-T2 | 3122 | 31128 | 498 | 62.5 | 6.00% | 2655
+2023-T3 | 3084 | 31155 | 494 | 63.1 | 5.45% | 2608
+2023-T4 | 3082 | 30878 | 495 | 62.4 | 5.60% | 2639
+2024-T1 | 3145 | 31593 | 491 | 64.3 | 5.70% | 2645
+2024-T2 | 3073 | 30789 | 498 | 61.8 | 5.71% | 2618
+2024-T3 | 3148 | 31355 | 495 | 63.3 | 5.66% | 2624
+2024-T4 | 3204 | 32227 | 497 | 64.8 | 5.22% | 2675
+
+-- uso por plan_tier da assinatura: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  Basic: 39433 -> 40455 (+3%) | 9979 -> 10145 (+2%) | 26.1 -> 25.6
+  Enterprise: 42344 -> 43732 (+3%) | 10758 -> 11466 (+7%) | 26.9 -> 27.8
+  Pro: 42784 -> 41777 (-2%) | 10618 -> 10616 (-0%) | 27.8 -> 26.8
+
+-- uso por industry: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  Cybersecurity: 25170 -> 25202 (+0%) | 6167 -> 7002 (+14%) | 62.3 -> 70.0
+  DevTools: 28655 -> 28737 (+0%) | 7101 -> 6777 (-5%) | 63.4 -> 61.1
+  EdTech: 19860 -> 20145 (+1%) | 5073 -> 5108 (+1%) | 64.2 -> 64.7
+  FinTech: 27724 -> 28204 (+2%) | 6935 -> 7287 (+5%) | 63.0 -> 65.1
+  HealthTech: 23152 -> 23676 (+2%) | 6079 -> 6053 (-0%) | 64.0 -> 63.7
+
+-- uso por country: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  AU: 7944 -> 7726 (-3%) | 1900 -> 1909 (+0%) | 61.3 -> 59.7
+  CA: 5801 -> 5297 (-9%) | 1247 -> 1186 (-5%) | 54.2 -> 51.6
+  DE: 5205 -> 5415 (+4%) | 1329 -> 1451 (+9%) | 53.2 -> 58.0
+  FR: 5554 -> 5337 (-4%) | 1312 -> 1340 (+2%) | 59.6 -> 63.8
+  IN: 12805 -> 12701 (-1%) | 3294 -> 3266 (-1%) | 67.2 -> 68.0
+  UK: 14390 -> 13986 (-3%) | 3622 -> 3461 (-4%) | 63.5 -> 59.7
+  US: 72862 -> 75502 (+4%) | 18651 -> 19614 (+5%) | 64.8 -> 67.6
+
+-- uso por referral_source: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  ads: 24637 -> 24959 (+1%) | 6363 -> 6112 (-4%) | 66.3 -> 62.4
+  event: 23764 -> 23206 (-2%) | 5783 -> 5954 (+3%) | 60.9 -> 62.7
+  organic: 28925 -> 30381 (+5%) | 7557 -> 8022 (+6%) | 66.9 -> 70.4
+  other: 25494 -> 25091 (-2%) | 6202 -> 6471 (+4%) | 60.8 -> 63.4
+  partner: 21741 -> 22327 (+3%) | 5450 -> 5668 (+4%) | 61.2 -> 64.4
+
+-- uso por is_trial da assinatura: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  False: 105746 -> 106232 (+0%) | 26107 -> 27325 (+5%) | 53.9 -> 56.2
+  True: 18815 -> 19732 (+5%) | 5248 -> 4902 (-7%) | 19.8 -> 18.3
+
+-- uso por billing_frequency: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  annual: 62569 -> 62143 (-1%) | 15977 -> 15593 (-2%) | 34.6 -> 34.7
+  monthly: 61992 -> 63821 (+3%) | 15378 -> 16634 (+8%) | 34.6 -> 35.9
+
+-- uso por status final da conta (ultima assinatura churn?): usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  ativa: 111924 -> 113092 (+1%) | 27972 -> 28952 (+4%) | 62.2 -> 64.1
+  perdida: 12637 -> 12872 (+2%) | 3383 -> 3275 (-3%) | 75.2 -> 72.8
+
+-- uso por conta em churn_events: usage_count 2023 vs 2024 | T3-24 vs T4-24 | uso/conta T3-24 -> T4-24
+  com evento: 87784 -> 89425 (+2%) | 22603 -> 22551 (-0%) | 65.0 -> 64.4
+  sem evento: 36777 -> 36539 (-1%) | 8752 -> 9676 (+11%) | 59.5 -> 65.8
+
+== suporte por trimestre (CS: satisfacao ok)
+tri | tickets | satisf media | % sem nota | resol h | 1a resp min | % escalado | % urgent+high
+2023-T1 | 228 | 4.00 | 42% | 35.5 | 87 | 3.5% | 52%
+2023-T2 | 251 | 4.00 | 45% | 35.9 | 91 | 4.8% | 54%
+2023-T3 | 272 | 3.97 | 42% | 36.2 | 86 | 3.3% | 51%
+2023-T4 | 240 | 3.99 | 43% | 37.2 | 91 | 5.8% | 47%
+2024-T1 | 251 | 3.88 | 43% | 35.3 | 91 | 4.4% | 51%
+2024-T2 | 240 | 3.99 | 37% | 35.6 | 89 | 6.7% | 54%
+2024-T3 | 248 | 4.14 | 40% | 36.0 | 88 | 4.0% | 50%
+2024-T4 | 270 | 3.89 | 39% | 35.2 | 86 | 5.6% | 51%
+distribuicao notas: [('3.0', 396), ('4.0', 405), ('5.0', 374), ('vazio', 825)]
+
+== nivel assinatura: taxa de churn por atributo (so pagas, mrr>0)
+  plan_tier: Basic: 128/1356 = 9.4% subs, 9.5% MRR | Enterprise: 146/1450 = 10.1% subs, 10.9% MRR | Pro: 134/1416 = 9.5% subs, 8.6% MRR
+  billing_frequency: annual: 216/2087 = 10.3% subs, 9.8% MRR | monthly: 192/2135 = 9.0% subs, 11.0% MRR
+  auto_renew_flag: False: 84/848 = 9.9% subs, 9.4% MRR | True: 324/3374 = 9.6% subs, 10.6% MRR
+  upgrade_flag: False: 372/3771 = 9.9% subs, 10.8% MRR | True: 36/451 = 8.0% subs, 7.2% MRR
+  downgrade_flag: False: 387/4034 = 9.6% subs, 10.6% MRR | True: 21/188 = 11.2% subs, 5.2% MRR
+  is_trial: False: 408/4222 = 9.7% subs, 10.4% MRR | True: 78/778 = 10.0% subs, 0.0% MRR
+
+== peso do churn: MRR das assinaturas encerradas (churn_flag)
+  MRR 0-100: 11 subs (2.7%) | 826 (0.1% do MRR perdido)
+  MRR 100-500: 90 subs (22.1%) | 27,603 (2.3% do MRR perdido)
+  MRR 500-1000: 81 subs (19.9%) | 60,535 (5.1% do MRR perdido)
+  MRR 1000-5000: 159 subs (39.0%) | 394,414 (33.4% do MRR perdido)
+  MRR 5000-1000000000000.0: 67 subs (16.4%) | 695,761 (59.0% do MRR perdido)
+  top 10% das subs encerradas = 45.0% do MRR perdido | total perdido 1,179,139 em 408 subs
+
+== nivel assinatura: uso e suporte, encerrada vs ativa (pagas)
+  encerrada: 408 subs | vida media 2.8 m | uso por mes de vida 17.6 | erros/uso 5.72% | % subs sem nenhum uso 0.7%
+  ativa: 3814 subs | vida media 5.5 m | uso por mes de vida 9.1 | erros/uso 5.60% | % subs sem nenhum uso 0.7%
+
+== evento de churn -> assinatura encerrada mais proxima (<=30 dias)
+  eventos com assinatura encerrada ate 30 dias: 126/600 | mediana distancia 61.5 dias
+
+== reason_code x feedback_text
+  budget {'missing features': 24, 'switched to competitor': 24, 'vazio': 28, 'too expensive': 28}
+  competitor {'vazio': 20, 'switched to competitor': 21, 'missing features': 27, 'too expensive': 24}
+  features {'missing features': 27, 'vazio': 32, 'too expensive': 32, 'switched to competitor': 23}
+  pricing {'switched to competitor': 24, 'too expensive': 25, 'vazio': 22, 'missing features': 20}
+  support {'vazio': 24, 'missing features': 31, 'switched to competitor': 20, 'too expensive': 29}
+  unknown {'too expensive': 23, 'missing features': 26, 'vazio': 22, 'switched to competitor': 24}

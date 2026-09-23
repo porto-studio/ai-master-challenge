@@ -1,0 +1,172 @@
+=== 1. DEFINICOES POR CONTA
+combinacoes (flag accounts, tem evento, ultima assinatura encerrada) -> contas
+  (False, True, False): 249
+  (False, False, False): 107
+  (True, True, False): 69
+  (True, False, False): 30
+  (False, True, True): 28
+  (True, True, True): 6
+  (False, False, True): 6
+  (True, False, True): 5
+contas com pelo menos 1 assinatura paga ativa em 31/12/24: 500 | MRR ativo A 10,159,608 | B 1,363,917
+contas com churn_flag=Sim e assinatura paga ativa em 31/12/24: 110 de 110
+
+=== 2. PERIODOS
+periodo | signups | contas_pagas_ativas_inicio | mrr_ativo_inicio | assinaturas_pagas_novas | mrr_novo | eventos_churn | contas_com_evento | eventos_por_conta_ativa | assinaturas_pagas_encerradas | mrr_encerrado | pct_mrr_encerrado_sobre_inicio | pct_mrr_encerrado_sobre_inicio_mais_novo
+2023-T1 | 55 | 0 | 0 | 27 | 41648 | 6 | 6 |  | 0 | 0 |  | 0.0
+2023-T2 | 54 | 19 | 41648 | 88 | 202694 | 11 | 11 | 0.579 | 2 | 1421 | 3.4 | 0.6
+2023-T3 | 53 | 64 | 244023 | 168 | 402265 | 19 | 17 | 0.297 | 2 | 914 | 0.4 | 0.1
+2023-T4 | 65 | 119 | 644272 | 272 | 667001 | 37 | 36 | 0.311 | 11 | 49160 | 7.6 | 3.7
+2024-T1 | 56 | 187 | 1283939 | 396 | 1064291 | 54 | 50 | 0.289 | 22 | 50138 | 3.9 | 2.1
+2024-T2 | 65 | 255 | 2311365 | 576 | 1616165 | 92 | 77 | 0.361 | 33 | 59026 | 2.6 | 1.5
+2024-T3 | 72 | 334 | 3863566 | 937 | 2348608 | 130 | 107 | 0.389 | 64 | 146668 | 3.8 | 2.4
+2024-T4 | 80 | 414 | 6062710 | 1758 | 4996075 | 251 | 180 | 0.606 | 274 | 871812 | 14.4 | 7.9
+-- meses 2024
+2024-01 | 16 | 187 | 1283939 | 113 | 276933 | 20 | 18 | 0.107 | 9 | 16361 | 1.3 | 1.0
+2024-02 | 13 | 206 | 1540764 | 126 | 365442 | 10 | 10 | 0.049 | 5 | 14349 | 0.9 | 0.8
+2024-03 | 27 | 225 | 1873778 | 157 | 421916 | 24 | 24 | 0.107 | 8 | 19428 | 1.0 | 0.8
+2024-04 | 22 | 255 | 2311365 | 159 | 445858 | 25 | 23 | 0.098 | 10 | 14888 | 0.6 | 0.5
+2024-05 | 22 | 274 | 2722991 | 214 | 632549 | 27 | 25 | 0.099 | 10 | 23536 | 0.9 | 0.7
+2024-06 | 21 | 305 | 3343584 | 203 | 537758 | 40 | 38 | 0.131 | 13 | 20602 | 0.6 | 0.5
+2024-07 | 26 | 334 | 3863566 | 290 | 707816 | 35 | 33 | 0.105 | 12 | 28029 | 0.7 | 0.6
+2024-08 | 21 | 361 | 4531319 | 284 | 648426 | 42 | 40 | 0.116 | 23 | 40737 | 0.9 | 0.8
+2024-09 | 25 | 384 | 5173309 | 363 | 992366 | 53 | 48 | 0.138 | 29 | 77902 | 1.5 | 1.3
+2024-10 | 31 | 414 | 6062710 | 424 | 1173608 | 66 | 60 | 0.159 | 43 | 110057 | 1.8 | 1.5
+2024-11 | 32 | 439 | 7137293 | 527 | 1549040 | 68 | 60 | 0.155 | 64 | 187112 | 2.6 | 2.2
+2024-12 | 17 | 474 | 8507358 | 807 | 2273427 | 117 | 96 | 0.247 | 167 | 574643 | 6.8 | 5.3
+
+=== 3. SUPORTE
+periodo | tickets | satisfacao_media | pct_sem_nota | nota_1 | nota_2 | nota_3 | nota_4 | nota_5 | resolucao_media_h | primeira_resposta_media_min | pct_escalados | pct_high_urgent
+2023-T1 | 228 | 4.0 | 42.1 | 0 | 0 | 43 | 46 | 43 | 35.5 | 87 | 3.5 | 51.8
+2023-T2 | 251 | 4.0 | 45.0 | 0 | 0 | 47 | 44 | 47 | 35.9 | 91 | 4.8 | 53.8
+2023-T3 | 272 | 3.97 | 42.3 | 0 | 0 | 51 | 59 | 47 | 36.2 | 86 | 3.3 | 51.1
+2023-T4 | 240 | 3.99 | 43.3 | 0 | 0 | 49 | 39 | 48 | 37.2 | 91 | 5.8 | 46.7
+2024-T1 | 251 | 3.88 | 42.6 | 0 | 0 | 55 | 52 | 37 | 35.3 | 91 | 4.4 | 51.4
+2024-T2 | 240 | 3.99 | 36.7 | 0 | 0 | 51 | 52 | 49 | 35.6 | 89 | 6.7 | 54.2
+2024-T3 | 248 | 4.14 | 39.5 | 0 | 0 | 40 | 49 | 61 | 36.0 | 88 | 4.0 | 49.6
+2024-T4 | 270 | 3.89 | 38.5 | 0 | 0 | 60 | 64 | 42 | 35.2 | 86 | 5.6 | 51.1
+TOTAL | 2000 | 3.98 | 41.2 | 0 | 0 | 396 | 405 | 374 | 35.9 | 88 | 4.8 | 51.2
+contas com evento de churn | 1395 | 3.98 | 41.6 | 0 | 0 | 273 | 285 | 257 | 35.7 | 89 | 5.1 | 51.0
+contas sem evento de churn | 605 | 3.98 | 40.5 | 0 | 0 | 123 | 120 | 117 | 36.1 | 88 | 4.0 | 51.6
+valores distintos de satisfaction_score: ['', '3.0', '4.0', '5.0']
+
+=== 4. USO
+TOTAL | todas | 124561 | 125964 | 1.1 | 31355 | 32227 | 2.8
+billing_frequency | annual | 62569 | 62143 | -0.7 | 15977 | 15593 | -2.4
+billing_frequency | monthly | 61992 | 63821 | 3.0 | 15378 | 16634 | 8.2
+country | AU | 7944 | 7726 | -2.7 | 1900 | 1909 | 0.5
+country | CA | 5801 | 5297 | -8.7 | 1247 | 1186 | -4.9
+country | DE | 5205 | 5415 | 4.0 | 1329 | 1451 | 9.2
+country | FR | 5554 | 5337 | -3.9 | 1312 | 1340 | 2.1
+country | IN | 12805 | 12701 | -0.8 | 3294 | 3266 | -0.9
+country | UK | 14390 | 13986 | -2.8 | 3622 | 3461 | -4.4
+country | US | 72862 | 75502 | 3.6 | 18651 | 19614 | 5.2
+industry | Cybersecurity | 25170 | 25202 | 0.1 | 6167 | 7002 | 13.5
+industry | DevTools | 28655 | 28737 | 0.3 | 7101 | 6777 | -4.6
+industry | EdTech | 19860 | 20145 | 1.4 | 5073 | 5108 | 0.7
+industry | FinTech | 27724 | 28204 | 1.7 | 6935 | 7287 | 5.1
+industry | HealthTech | 23152 | 23676 | 2.3 | 6079 | 6053 | -0.4
+is_trial (assinatura) | False | 105746 | 106232 | 0.5 | 26107 | 27325 | 4.7
+is_trial (assinatura) | True | 18815 | 19732 | 4.9 | 5248 | 4902 | -6.6
+plan_tier (assinatura) | Basic | 39433 | 40455 | 2.6 | 9979 | 10145 | 1.7
+plan_tier (assinatura) | Enterprise | 42344 | 43732 | 3.3 | 10758 | 11466 | 6.6
+plan_tier (assinatura) | Pro | 42784 | 41777 | -2.4 | 10618 | 10616 | -0.0
+referral_source | ads | 24637 | 24959 | 1.3 | 6363 | 6112 | -3.9
+referral_source | event | 23764 | 23206 | -2.3 | 5783 | 5954 | 3.0
+referral_source | organic | 28925 | 30381 | 5.0 | 7557 | 8022 | 6.2
+referral_source | other | 25494 | 25091 | -1.6 | 6202 | 6471 | 4.3
+referral_source | partner | 21741 | 22327 | 2.7 | 5450 | 5668 | 4.0
+registros de uso por assinatura: media 5.00, min 0, max 16 | correlacao com duracao da assinatura: -0.009
+  duracao 0-30 dias: 1038 assinaturas, 5.01 registros de uso em media
+  duracao 30-90 dias: 1131 assinaturas, 5.00 registros de uso em media
+  duracao 90-180 dias: 1075 assinaturas, 5.01 registros de uso em media
+  duracao 180-365 dias: 1146 assinaturas, 5.00 registros de uso em media
+  duracao 365-10000 dias: 610 assinaturas, 4.97 registros de uso em media
+registros de uso fora do periodo de vida da propria assinatura: 19432 de 25000 (77.7%)
+
+=== 5. PESO DO CHURN (assinaturas pagas encerradas)
+ate 500 | 101 | 24.8 | 28429 | 2.4
+500-1.000 | 81 | 19.9 | 60535 | 5.1
+1.000-5.000 | 159 | 39.0 | 394414 | 33.4
+acima de 5.000 | 67 | 16.4 | 695761 | 59.0
+total 408 assinaturas, MRR 1,179,139 | top 10% = 45.0% | top 20% = 64.7%
+contas com MRR perdido: 288 | top 10 contas = 21.4% do MRR perdido | top 30 = 45.5%
+
+=== 6. SEGMENTOS: MRR PERDIDO EM 2024 (assinaturas pagas expostas em 2024) + teste de permutacao
+country: p contagem 0.098 | p MRR 0.288 | AU 11.5% subs / 10.3% MRR · CA 8.5% subs / 9.0% MRR · DE 10.2% subs / 11.5% MRR · FR 11.0% subs / 16.6% MRR · IN 5.7% subs / 6.8% MRR · UK 10.9% subs / 12.6% MRR · US 9.3% subs / 9.5% MRR
+industry: p contagem 0.623 | p MRR 0.825 | Cybersecurity 9.7% subs / 11.6% MRR · DevTools 10.2% subs / 9.0% MRR · EdTech 8.2% subs / 9.7% MRR · FinTech 8.6% subs / 9.4% MRR · HealthTech 9.6% subs / 10.5% MRR
+referral_source: p contagem 0.205 | p MRR 0.683 | ads 9.4% subs / 9.0% MRR · event 9.2% subs / 11.9% MRR · organic 11.1% subs / 9.5% MRR · other 8.2% subs / 11.1% MRR · partner 8.3% subs / 8.7% MRR
+seats (conta): p contagem 0.332 | p MRR 0.303 | 01-05 10.6% subs / 13.5% MRR · 06-10 10.2% subs / 10.8% MRR · 11-20 8.5% subs / 9.0% MRR · 21-50 8.5% subs / 8.9% MRR · 51+ 9.0% subs / 9.3% MRR
+plan_tier (assinatura): p contagem 0.782 | p MRR 0.145 | Basic 9.2% subs / 9.4% MRR · Enterprise 9.8% subs / 10.5% MRR · Pro 9.0% subs / 8.2% MRR
+billing_frequency: p contagem 0.223 | p MRR 0.284 | annual 9.9% subs / 9.1% MRR · monthly 8.8% subs / 10.8% MRR
+auto_renew_flag: p contagem 0.903 | p MRR 0.464 | False 9.5% subs / 8.9% MRR · True 9.3% subs / 10.3% MRR
+upgrade_flag: p contagem 0.204 | p MRR 0.168 | False 9.6% subs / 10.4% MRR · True 7.6% subs / 7.0% MRR
+downgrade_flag: p contagem 0.512 | p MRR 0.165 | False 9.3% subs / 10.2% MRR · True 10.7% subs / 5.0% MRR
+total 2024: 4207 assinaturas expostas, 393 encerradas (9.3%), MRR exposto 11,287,252, perdido 1,127,644 (10.0%)
+
+=== 7. IDADE DA CONTA x CHURN NOS 90 DIAS SEGUINTES (snapshots trimestrais)
+todos os snapshots (jun/23 a set/24) | 0-3 meses | 365 | 119 | 32.6 | 28.0 | 37.6 | 1277214 | 53599 | 4.2
+todos os snapshots (jun/23 a set/24) | 3-6 meses | 347 | 76 | 21.9 | 17.9 | 26.5 | 2720115 | 88059 | 3.2
+todos os snapshots (jun/23 a set/24) | 6-12 meses | 511 | 103 | 20.2 | 16.9 | 23.9 | 5691816 | 240828 | 4.2
+todos os snapshots (jun/23 a set/24) | 12+ meses | 326 | 56 | 17.2 | 13.5 | 21.6 | 4605177 | 111245 | 2.4
+sem o ultimo snapshot (exclui out-dez/24) | 0-3 meses | 293 | 80 | 27.3 | 22.5 | 32.7 | 771291 | 26142 | 3.4
+sem o ultimo snapshot (exclui out-dez/24) | 3-6 meses | 282 | 53 | 18.8 | 14.7 | 23.8 | 1887493 | 44490 | 2.4
+sem o ultimo snapshot (exclui out-dez/24) | 6-12 meses | 390 | 70 | 17.9 | 14.5 | 22.1 | 3644554 | 86324 | 2.4
+sem o ultimo snapshot (exclui out-dez/24) | 12+ meses | 164 | 27 | 16.5 | 11.6 | 22.9 | 1955639 | 49296 | 2.5
+-- por snapshot: % evento 90d em contas <6 meses vs >=6 meses
+  2023-06-30: <6m 14/109 = 12.8% | >=6m 0/0 = 0.0%
+  2023-09-30: <6m 15/107 = 14.0% | >=6m 12/55 = 21.8%
+  2023-12-31: <6m 32/117 = 27.4% | >=6m 10/110 = 9.1%
+  2024-03-31: <6m 34/121 = 28.1% | >=6m 27/162 = 16.7%
+  2024-06-30: <6m 38/121 = 31.4% | >=6m 48/227 = 21.1%
+  2024-09-30: <6m 62/137 = 45.3% | >=6m 62/283 = 21.9%
+upg nos 90d anteriores: evento 90d 67/283 = 23.7% | sem: 287/1266 = 22.7%
+dng nos 90d anteriores: evento 90d 30/112 = 26.8% | sem: 324/1437 = 22.5%
+
+=== 8. CONSISTENCIA DOS CAMPOS DE churn_events
+reason_code x feedback_text: p permutacao 0.988
+   ['budget', 24, 24, 28, 28]
+   ['competitor', 27, 21, 24, 20]
+   ['features', 27, 23, 32, 32]
+   ['pricing', 20, 24, 25, 22]
+   ['support', 31, 20, 29, 24]
+   ['unknown', 26, 24, 23, 22]
+preceding_upgrade_flag vs upgrade em subscriptions nos 90d antes: Counter({(False, False): 366, (False, True): 111, (True, False): 89, (True, True): 34})
+is_reactivation=True: 61 | desses, conta tinha evento anterior: 35
+eventos que NAO sao o primeiro da conta: 248 | desses com is_reactivation=True: 35
+
+=== 9. CONTAS EM RISCO EM 31/12/2024
+contas com assinatura paga ativa: 500 | MRR ativo 10,159,608 | MRR em risco estimado 90d 332,254 (3.3%)
+  0-3 meses: 80 contas | MRR ativo 1,643,106 (16.2%) | em risco 69,009 (20.8% do risco)
+  3-6 meses: 72 contas | MRR ativo 1,516,932 (14.9%) | em risco 48,545 (14.6% do risco)
+  6-12 meses: 121 contas | MRR ativo 2,594,191 (25.5%) | em risco 108,957 (32.8% do risco)
+  12+ meses: 227 contas | MRR ativo 4,405,379 (43.4%) | em risco 105,743 (31.8% do risco)
+top 25 contas = 18.5% do MRR em risco | 15.9% do MRR ativo
+cenario: reduzir em 20% a taxa das contas <6 meses -> MRR preservado por trimestre 23,511 (x4 = 94,043/ano) | 50% -> 58,777 (x4 = 235,108/ano)
+# | account_id | account_name | country | industry | plano_assinatura_mais_recente | idade_meses | mrr_ativo | mrr_em_risco_90d_estimado | eventos_churn_historico | tickets_90d | tickets_escalados_90d | var_uso_pct | pct_erros_por_uso_90d
+1 | A-d4e0d4 | Company_403 | US | FinTech | Enterprise | 2.4 | 114777 | 4821 | 0 | 0 | 0 | -80.9 | 7.69
+2 | A-1f0636 | Company_368 | AU | EdTech | Enterprise | 12.0 | 94710 | 3978 | 0 | 0 | 0 | 93.4 | 7.63
+3 | A-30b4ca | Company_23 | IN | EdTech | Basic | 7.4 | 75938 | 3189 | 1 | 0 | 0 | -59.0 | 0.0
+4 | A-18793f | Company_488 | US | EdTech | Pro | 0.4 | 75776 | 3183 | 1 | 0 | 0 | -46.2 | 0.0
+5 | A-5b1bcd | Company_166 | US | DevTools | Pro | 15.5 | 131911 | 3166 | 1 | 1 | 0 | 25.0 | 12.17
+6 | A-5a215a | Company_358 | FR | EdTech | Pro | 11.9 | 69687 | 2927 | 0 | 1 | 0 | 69.0 | 6.12
+7 | A-40906c | Company_235 | US | EdTech | Pro | 9.2 | 64400 | 2705 | 0 | 3 | 0 | 52.1 | 4.11
+8 | A-5c046d | Company_130 | FR | EdTech | Enterprise | 5.8 | 83886 | 2684 | 0 | 0 | 0 | 55.6 | 9.52
+9 | A-56962b | Company_177 | UK | EdTech | Enterprise | 8.7 | 54605 | 2293 | 2 | 0 | 0 | 216.7 | 12.28
+10 | A-c58f49 | Company_480 | US | EdTech | Enterprise | 5.0 | 70980 | 2271 | 3 | 0 | 0 | 158.8 | 0.0
+11 | A-4814a3 | Company_337 | IN | Cybersecurity | Pro | 3.4 | 70644 | 2261 | 1 | 0 | 0 | 27.6 | 5.41
+12 | A-09316c | Company_341 | AU | FinTech | Enterprise | 3.6 | 70000 | 2240 | 1 | 2 | 0 | -24.7 | 5.45
+13 | A-9779ad | Company_171 | AU | Cybersecurity | Enterprise | 9.1 | 51680 | 2171 | 3 | 2 | 0 | 62.2 | 5.0
+14 | A-e08cd3 | Company_475 | US | FinTech | Basic | 3.3 | 67737 | 2168 | 2 | 2 | 0 |  | 2.78
+15 | A-66224b | Company_87 | US | HealthTech | Pro | 2.4 | 50876 | 2137 | 0 | 2 | 0 | -68.3 | 5.77
+16 | A-bd4513 | Company_205 | AU | DevTools | Basic | 1.8 | 48804 | 2050 | 2 | 1 | 0 | 2.7 | 7.89
+17 | A-76fa4d | Company_226 | US | HealthTech | Pro | 1.2 | 47955 | 2014 | 2 | 1 | 0 | 148.0 | 4.84
+18 | A-9174e0 | Company_73 | US | Cybersecurity | Enterprise | 0.9 | 46613 | 1958 | 0 | 1 | 0 | -17.9 | 14.55
+19 | A-2d1036 | Company_399 | US | FinTech | Pro | 6.6 | 46230 | 1942 | 2 | 1 | 0 | -7.3 | 7.87
+20 | A-0cc442 | Company_198 | US | EdTech | Enterprise | 5.5 | 60092 | 1923 | 4 | 0 | 0 | -8.7 | 8.33
+21 | A-4c38bc | Company_55 | UK | HealthTech | Pro | 9.8 | 45612 | 1916 | 0 | 0 | 0 | -13.8 | 2.83
+22 | A-0651a4 | Company_255 | FR | HealthTech | Enterprise | 2.5 | 44564 | 1872 | 2 | 0 | 0 | 158.8 | 6.82
+23 | A-054577 | Company_455 | UK | EdTech | Pro | 8.1 | 44145 | 1854 | 0 | 0 | 0 | 525.0 | 4.0
+24 | A-d40bf7 | Company_11 | IN | FinTech | Basic | 1.7 | 43247 | 1816 | 0 | 1 | 0 | -65.4 | 2.22
+25 | A-cd458b | Company_430 | US | DevTools | Enterprise | 6.5 | 42740 | 1795 | 1 | 1 | 0 | 13.0 | 7.69
+risco por industry: {'FinTech': (112, 2416050, 74977), 'DevTools': (113, 2165043, 69239), 'EdTech': (79, 1844424, 66824), 'Cybersecurity': (100, 1974256, 64592), 'HealthTech': (96, 1759835, 56622)}

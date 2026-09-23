@@ -1,0 +1,201 @@
+dimensao,segmento,trimestre,usage_count,contas_usando,uso_por_conta,pct_erros_por_uso
+TOTAL,todas,2023-T1,31400,497,63.2,5.72
+TOTAL,todas,2023-T2,31128,498,62.5,6.0
+TOTAL,todas,2023-T3,31155,494,63.1,5.45
+TOTAL,todas,2023-T4,30878,495,62.4,5.6
+TOTAL,todas,2024-T1,31593,491,64.3,5.7
+TOTAL,todas,2024-T2,30789,498,61.8,5.71
+TOTAL,todas,2024-T3,31355,495,63.3,5.66
+TOTAL,todas,2024-T4,32227,497,64.8,5.22
+billing_frequency,annual,2023-T1,15875,461,34.4,5.64
+billing_frequency,annual,2023-T2,15511,458,33.9,6.13
+billing_frequency,annual,2023-T3,15451,452,34.2,5.26
+billing_frequency,annual,2023-T4,15732,449,35.0,5.75
+billing_frequency,annual,2024-T1,15442,460,33.6,5.71
+billing_frequency,annual,2024-T2,15131,443,34.2,5.41
+billing_frequency,annual,2024-T3,15977,462,34.6,5.54
+billing_frequency,annual,2024-T4,15593,449,34.7,5.16
+billing_frequency,monthly,2023-T1,15525,463,33.5,5.8
+billing_frequency,monthly,2023-T2,15617,461,33.9,5.88
+billing_frequency,monthly,2023-T3,15704,452,34.7,5.64
+billing_frequency,monthly,2023-T4,15146,458,33.1,5.44
+billing_frequency,monthly,2024-T1,16151,457,35.3,5.7
+billing_frequency,monthly,2024-T2,15658,461,34.0,6.0
+billing_frequency,monthly,2024-T3,15378,444,34.6,5.79
+billing_frequency,monthly,2024-T4,16634,463,35.9,5.28
+country,AU,2023-T1,1993,32,62.3,5.57
+country,AU,2023-T2,1896,32,59.2,5.54
+country,AU,2023-T3,1896,32,59.2,6.86
+country,AU,2023-T4,2159,31,69.6,3.66
+country,AU,2024-T1,1864,32,58.2,5.04
+country,AU,2024-T2,2053,32,64.2,6.82
+country,AU,2024-T3,1900,31,61.3,4.47
+country,AU,2024-T4,1909,32,59.7,4.09
+country,CA,2023-T1,1452,22,66.0,3.93
+country,CA,2023-T2,1247,22,56.7,3.61
+country,CA,2023-T3,1533,23,66.7,5.28
+country,CA,2023-T4,1569,23,68.2,4.21
+country,CA,2024-T1,1448,23,63.0,6.35
+country,CA,2024-T2,1416,23,61.6,6.57
+country,CA,2024-T3,1247,23,54.2,5.29
+country,CA,2024-T4,1186,23,51.6,4.3
+country,DE,2023-T1,1474,25,59.0,6.72
+country,DE,2023-T2,1144,25,45.8,6.03
+country,DE,2023-T3,1177,24,49.0,5.18
+country,DE,2023-T4,1410,25,56.4,6.67
+country,DE,2024-T1,1379,25,55.2,5.87
+country,DE,2024-T2,1256,25,50.2,5.33
+country,DE,2024-T3,1329,25,53.2,6.32
+country,DE,2024-T4,1451,25,58.0,5.1
+country,FR,2023-T1,1449,21,69.0,6.63
+country,FR,2023-T2,1436,22,65.3,8.08
+country,FR,2023-T3,1500,20,75.0,6.53
+country,FR,2023-T4,1169,22,53.1,7.87
+country,FR,2024-T1,1182,21,56.3,4.82
+country,FR,2024-T2,1503,22,68.3,5.46
+country,FR,2024-T3,1312,22,59.6,3.43
+country,FR,2024-T4,1340,21,63.8,6.64
+country,IN,2023-T1,3197,49,65.2,6.22
+country,IN,2023-T2,3282,49,67.0,6.22
+country,IN,2023-T3,3049,49,62.2,5.67
+country,IN,2023-T4,3277,48,68.3,5.65
+country,IN,2024-T1,3103,48,64.6,5.7
+country,IN,2024-T2,3038,49,62.0,4.31
+country,IN,2024-T3,3294,49,67.2,4.83
+country,IN,2024-T4,3266,48,68.0,4.84
+country,UK,2023-T1,3524,57,61.8,5.28
+country,UK,2023-T2,3533,57,62.0,5.92
+country,UK,2023-T3,3739,57,65.6,5.83
+country,UK,2023-T4,3594,58,62.0,5.56
+country,UK,2024-T1,3615,57,63.4,5.12
+country,UK,2024-T2,3288,57,57.7,7.03
+country,UK,2024-T3,3622,57,63.5,5.77
+country,UK,2024-T4,3461,58,59.7,4.51
+country,US,2023-T1,18311,291,62.9,5.72
+country,US,2023-T2,18590,291,63.9,6.03
+country,US,2023-T3,18261,289,63.2,5.13
+country,US,2023-T4,17700,288,61.5,5.72
+country,US,2024-T1,19002,285,66.7,5.87
+country,US,2024-T2,18235,290,62.9,5.56
+country,US,2024-T3,18651,288,64.8,6.04
+country,US,2024-T4,19614,290,67.6,5.49
+industry,Cybersecurity,2023-T1,6172,99,62.3,5.95
+industry,Cybersecurity,2023-T2,6579,99,66.5,6.38
+industry,Cybersecurity,2023-T3,6154,99,62.2,5.07
+industry,Cybersecurity,2023-T4,6265,99,63.3,5.43
+industry,Cybersecurity,2024-T1,5997,98,61.2,5.09
+industry,Cybersecurity,2024-T2,6036,99,61.0,6.43
+industry,Cybersecurity,2024-T3,6167,99,62.3,5.22
+industry,Cybersecurity,2024-T4,7002,100,70.0,4.93
+industry,DevTools,2023-T1,6959,113,61.6,4.89
+industry,DevTools,2023-T2,6867,113,60.8,5.84
+industry,DevTools,2023-T3,7723,111,69.6,5.14
+industry,DevTools,2023-T4,7106,112,63.4,5.12
+industry,DevTools,2024-T1,7526,110,68.4,6.28
+industry,DevTools,2024-T2,7333,113,64.9,5.65
+industry,DevTools,2024-T3,7101,112,63.4,5.84
+industry,DevTools,2024-T4,6777,111,61.1,5.43
+industry,EdTech,2023-T1,4983,79,63.1,5.48
+industry,EdTech,2023-T2,5162,79,65.3,5.85
+industry,EdTech,2023-T3,4939,77,64.1,5.63
+industry,EdTech,2023-T4,4776,79,60.5,6.18
+industry,EdTech,2024-T1,5053,76,66.5,5.44
+industry,EdTech,2024-T2,4911,79,62.2,6.35
+industry,EdTech,2024-T3,5073,79,64.2,5.6
+industry,EdTech,2024-T4,5108,79,64.7,5.05
+industry,FinTech,2023-T1,7101,111,64.0,5.96
+industry,FinTech,2023-T2,6936,112,61.9,5.64
+industry,FinTech,2023-T3,6902,111,62.2,5.55
+industry,FinTech,2023-T4,6785,109,62.2,5.54
+industry,FinTech,2024-T1,7306,111,65.8,5.93
+industry,FinTech,2024-T2,6676,111,60.1,5.09
+industry,FinTech,2024-T3,6935,110,63.0,5.65
+industry,FinTech,2024-T4,7287,112,65.1,5.05
+industry,HealthTech,2023-T1,6185,95,65.1,6.34
+industry,HealthTech,2023-T2,5584,95,58.8,6.36
+industry,HealthTech,2023-T3,5437,96,56.6,6.03
+industry,HealthTech,2023-T4,5946,96,61.9,5.95
+industry,HealthTech,2024-T1,5711,96,59.5,5.53
+industry,HealthTech,2024-T2,5833,96,60.8,5.19
+industry,HealthTech,2024-T3,6079,95,64.0,5.95
+industry,HealthTech,2024-T4,6053,95,63.7,5.67
+is_trial (assinatura),False,2023-T1,26519,492,53.9,5.66
+is_trial (assinatura),False,2023-T2,26640,494,53.9,5.83
+is_trial (assinatura),False,2023-T3,26433,486,54.4,5.39
+is_trial (assinatura),False,2023-T4,26154,486,53.8,5.58
+is_trial (assinatura),False,2024-T1,26797,486,55.1,5.67
+is_trial (assinatura),False,2024-T2,26003,494,52.6,5.73
+is_trial (assinatura),False,2024-T3,26107,484,53.9,5.71
+is_trial (assinatura),False,2024-T4,27325,486,56.2,5.32
+is_trial (assinatura),True,2023-T1,4881,269,18.1,6.0
+is_trial (assinatura),True,2023-T2,4488,260,17.3,7.02
+is_trial (assinatura),True,2023-T3,4722,244,19.4,5.78
+is_trial (assinatura),True,2023-T4,4724,263,18.0,5.72
+is_trial (assinatura),True,2024-T1,4796,263,18.2,5.9
+is_trial (assinatura),True,2024-T2,4786,256,18.7,5.58
+is_trial (assinatura),True,2024-T3,5248,265,19.8,5.41
+is_trial (assinatura),True,2024-T4,4902,268,18.3,4.63
+plan_tier (assinatura),Basic,2023-T1,10331,385,26.8,5.58
+plan_tier (assinatura),Basic,2023-T2,10054,398,25.3,5.93
+plan_tier (assinatura),Basic,2023-T3,9566,391,24.5,5.26
+plan_tier (assinatura),Basic,2023-T4,9482,395,24.0,5.33
+plan_tier (assinatura),Basic,2024-T1,10155,396,25.6,5.33
+plan_tier (assinatura),Basic,2024-T2,10176,389,26.2,5.97
+plan_tier (assinatura),Basic,2024-T3,9979,383,26.1,5.74
+plan_tier (assinatura),Basic,2024-T4,10145,397,25.6,5.25
+plan_tier (assinatura),Enterprise,2023-T1,10749,392,27.4,5.7
+plan_tier (assinatura),Enterprise,2023-T2,10479,411,25.5,5.59
+plan_tier (assinatura),Enterprise,2023-T3,10289,392,26.2,5.35
+plan_tier (assinatura),Enterprise,2023-T4,10827,382,28.3,5.26
+plan_tier (assinatura),Enterprise,2024-T1,10787,388,27.8,6.31
+plan_tier (assinatura),Enterprise,2024-T2,10721,397,27.0,5.57
+plan_tier (assinatura),Enterprise,2024-T3,10758,400,26.9,6.06
+plan_tier (assinatura),Enterprise,2024-T4,11466,412,27.8,5.29
+plan_tier (assinatura),Pro,2023-T1,10320,387,26.7,5.87
+plan_tier (assinatura),Pro,2023-T2,10595,395,26.8,6.48
+plan_tier (assinatura),Pro,2023-T3,11300,392,28.8,5.71
+plan_tier (assinatura),Pro,2023-T4,10569,393,26.9,6.2
+plan_tier (assinatura),Pro,2024-T1,10651,391,27.2,5.45
+plan_tier (assinatura),Pro,2024-T2,9892,378,26.2,5.58
+plan_tier (assinatura),Pro,2024-T3,10618,382,27.8,5.18
+plan_tier (assinatura),Pro,2024-T4,10616,396,26.8,5.11
+referral_source,ads,2023-T1,6543,98,66.8,5.85
+referral_source,ads,2023-T2,5890,97,60.7,6.21
+referral_source,ads,2023-T3,6067,98,61.9,5.87
+referral_source,ads,2023-T4,6137,97,63.3,5.51
+referral_source,ads,2024-T1,6123,96,63.8,5.7
+referral_source,ads,2024-T2,6361,98,64.9,5.91
+referral_source,ads,2024-T3,6363,96,66.3,5.92
+referral_source,ads,2024-T4,6112,98,62.4,4.61
+referral_source,event,2023-T1,5733,96,59.7,5.44
+referral_source,event,2023-T2,6166,96,64.2,5.82
+referral_source,event,2023-T3,6004,96,62.5,5.03
+referral_source,event,2023-T4,5861,94,62.4,5.0
+referral_source,event,2024-T1,5929,92,64.4,5.87
+referral_source,event,2024-T2,5540,96,57.7,6.08
+referral_source,event,2024-T3,5783,95,60.9,5.88
+referral_source,event,2024-T4,5954,95,62.7,5.32
+referral_source,organic,2023-T1,7607,112,67.9,5.98
+referral_source,organic,2023-T2,7311,114,64.1,6.03
+referral_source,organic,2023-T3,6958,113,61.6,5.76
+referral_source,organic,2023-T4,7049,112,62.9,5.79
+referral_source,organic,2024-T1,7447,113,65.9,5.63
+referral_source,organic,2024-T2,7355,113,65.1,5.17
+referral_source,organic,2024-T3,7557,113,66.9,5.89
+referral_source,organic,2024-T4,8022,114,70.4,5.05
+referral_source,other,2023-T1,6161,103,59.8,5.52
+referral_source,other,2023-T2,6476,103,62.9,5.3
+referral_source,other,2023-T3,6320,99,63.8,5.44
+referral_source,other,2023-T4,6537,103,63.5,5.74
+referral_source,other,2024-T1,6402,101,63.4,5.84
+referral_source,other,2024-T2,6016,103,58.4,6.13
+referral_source,other,2024-T3,6202,102,60.8,5.39
+referral_source,other,2024-T4,6471,102,63.4,5.81
+referral_source,partner,2023-T1,5356,88,60.9,5.69
+referral_source,partner,2023-T2,5285,88,60.1,6.81
+referral_source,partner,2023-T3,5806,88,66.0,5.08
+referral_source,partner,2023-T4,5294,89,59.5,5.95
+referral_source,partner,2024-T1,5692,89,64.0,5.48
+referral_source,partner,2024-T2,5517,88,62.7,5.35
+referral_source,partner,2024-T3,5450,89,61.2,5.12
+referral_source,partner,2024-T4,5668,88,64.4,5.33
