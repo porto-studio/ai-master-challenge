@@ -14,7 +14,7 @@ Esta é a imagem que resume o diagnóstico. O CS diz que a satisfação está ok
 |---|---|
 | **2 minutos** | O resumo abaixo |
 | **15 minutos** | [`solution/RELATORIO_DIAGNOSTICO_CHURN.md`](./solution/RELATORIO_DIAGNOSTICO_CHURN.md) — as 3 perguntas do desafio, respondidas |
-| **Quer ver como eu trabalhei** | [`process-log/`](./process-log/) — os 15 momentos de decisão, com o print da tela e o que pedi em cada um |
+| **Quer ver como eu trabalhei** | [`process-log/`](./process-log/) — os 15 momentos de decisão, com o print da tela e o que pedi em cada um · [versão visual](https://porto-studio.github.io/ai-master-challenge/submissions/adriel-porto/process-log/linha-do-tempo.html) |
 | **Quer ler a narrativa** | [`process-log/COMO-TRABALHEI.md`](./process-log/COMO-TRABALHEI.md) — iterações, os 4 erros e o que descartei |
 | **Quer conferir os números** | [`solution/COMO-RODAR.md`](./solution/COMO-RODAR.md) — roda na sua máquina e reproduz cada número |
 
@@ -90,7 +90,7 @@ docs/         a análise de origem de tráfego e a conciliação dos números
 
 - **Os momentos de decisão** — 15 blocos com a hora, o print da tela e o que eu pedi com as minhas palavras ([abre direto](./process-log/))
 - **Chat export** — a conversa exata desses momentos, extraída do transcript da sessão do Claude Code ([ver](./process-log/chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md))
-- **30 screenshots** da sessão gravada, baixáveis ([pasta](./process-log/screenshots/)), mais uma [galeria em HTML](./process-log/linha-do-tempo.html) para abrir no computador
+- **30 screenshots** da sessão gravada, baixáveis ([pasta](./process-log/screenshots/)), mais uma **[galeria visual que abre com um clique](https://porto-studio.github.io/ai-master-challenge/submissions/adriel-porto/process-log/linha-do-tempo.html)**
 - **Narrativa escrita** ([COMO-TRABALHEI.md](./process-log/COMO-TRABALHEI.md)) e o **histórico de commits** desta branch, com o motivo de cada decisão na mensagem
 - **Os 14 scripts** com a saída bruta salva, reproduzíveis a partir de `solution/`
 

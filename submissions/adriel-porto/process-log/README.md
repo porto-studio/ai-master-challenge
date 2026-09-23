@@ -9,7 +9,7 @@ A sessão de 14/09/2026 foi gravada inteira pelo **PromptCapture AI** — uma fe
 | 💬 **A conversa exata destes momentos** | [`chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md`](./chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md) — prompt e resposta na íntegra |
 | 📖 **A narrativa do processo** | [`COMO-TRABALHEI.md`](./COMO-TRABALHEI.md) — ferramentas, iterações, os 4 erros, o que descartei |
 | 🖼 **Todas as imagens** | [`screenshots/`](./screenshots/) — 30 arquivos, baixáveis |
-| 🌐 **Galeria para abrir no computador** | [`linha-do-tempo.html`](./linha-do-tempo.html) — baixe e abra no navegador |
+| 🌐 **Galeria visual, abre com um clique** | **[porto-studio.github.io → linha do tempo](https://porto-studio.github.io/ai-master-challenge/submissions/adriel-porto/process-log/linha-do-tempo.html)** — a mesma coisa em página, com a grade das 30 imagens |
 
 > **O que foi tirado destas imagens:** em 5 delas o painel da direita do terminal mostrava uma lista de atalhos pessoais com endereços de e-mail — essas foram cortadas para o painel da esquerda, que é onde está o trabalho. Uma sexta imagem, que era só a Mesa do computador sem conteúdo de trabalho, ficou de fora. Nada mais foi editado.
 
