@@ -1,5 +1,7 @@
 # Process Log — como eu trabalhei
 
+> 🖼 **Prefere ver em vez de ler?** [`README.md` desta pasta](./README.md) tem os 15 momentos de decisão com o print da tela e o que eu pedi em cada um, e [`chat-export/`](./chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md) tem a conversa exata.
+
 Narrativa do processo, na ordem em que aconteceu. Os horários saem do histórico de commits desta branch (`git log`) e do registro automático de tela descrito no item 5.
 
 ---
@@ -68,7 +70,9 @@ Resultado: **31 prints mantidos, 8.027 movidos** para fora (nenhum apagado, para
 
 **Conferência que essa gravação permitiu:** 5 dos 6 commits desta branch caem no mesmo segundo de um momento curado (15:53, 17:02, 17:25, 20:57, 21:09). A imagem da decisão e o commit que ela gerou se confirmam um ao outro.
 
-**Por que os prints não estão nesta pasta:** são capturas de tela inteira de 7 horas de trabalho, com material de clientes reais meus no fundo. Publicar isso seria expor dado de terceiro que não tem nada a ver com este desafio. O que está publicado é o que dá para auditar sem esse custo: a narrativa, o histórico de commits e o código que gera cada número.
+**O que está publicado:** os **30 prints** estão em [`screenshots/`](./screenshots/), e os 15 momentos de decisão — cada um com a hora, a imagem e o que eu pedi — estão no [`README.md` desta pasta](./README.md). A conversa exata desses momentos, extraída do transcript do Claude Code, está em [`chat-export/`](./chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md).
+
+**O que foi tirado:** são capturas de tela inteira de 7 horas de trabalho. Em 5 delas o painel direito do terminal mostrava uma lista de atalhos pessoais com endereços de e-mail — cortei para o painel da esquerda, onde está o trabalho. Uma sexta, que era só a Mesa do computador sem conteúdo nenhum, ficou de fora. As 31 foram conferidas uma a uma antes de subir.
 
 ---
 

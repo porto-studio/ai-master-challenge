@@ -14,7 +14,8 @@ Esta é a imagem que resume o diagnóstico. O CS diz que a satisfação está ok
 |---|---|
 | **2 minutos** | O resumo abaixo |
 | **15 minutos** | [`solution/RELATORIO_DIAGNOSTICO_CHURN.md`](./solution/RELATORIO_DIAGNOSTICO_CHURN.md) — as 3 perguntas do desafio, respondidas |
-| **Quer ver como eu trabalhei** | [`process-log/COMO-TRABALHEI.md`](./process-log/COMO-TRABALHEI.md) — o obrigatório: iterações, erros e o que descartei |
+| **Quer ver como eu trabalhei** | [`process-log/`](./process-log/) — os 15 momentos de decisão, com o print da tela e o que pedi em cada um |
+| **Quer ler a narrativa** | [`process-log/COMO-TRABALHEI.md`](./process-log/COMO-TRABALHEI.md) — iterações, os 4 erros e o que descartei |
 | **Quer conferir os números** | [`solution/COMO-RODAR.md`](./solution/COMO-RODAR.md) — roda na sua máquina e reproduz cada número |
 
 ---
@@ -81,11 +82,19 @@ Dois padrões sobrevivem aos testes: **conta nova sai mais** (32,6% contra 17,2%
 ```
 solution/     o relatório, as 12 tabelas que o sustentam, os 14 scripts que geram
               cada número, e 2 ferramentas que recalculam tudo ao vivo do CSV bruto
-process-log/  como trabalhei, o que errei, o que descartei
+process-log/  os momentos de decisão com print e conversa, a narrativa, e as 30 imagens
 docs/         a análise de origem de tráfego e a conciliação dos números
 ```
 
-**Evidências de uso de IA:** histórico de commits desta branch (com o motivo de cada decisão na mensagem), a narrativa em `process-log/`, e os 14 scripts com a saída bruta salva. Os 8.058 prints da sessão gravada **não estão publicados de propósito** — são telas inteiras, com material de clientes reais meus ao fundo. O critério de filtragem está no §5 do process log.
+**Evidências de uso de IA**, todas em [`process-log/`](./process-log/):
+
+- **Os momentos de decisão** — 15 blocos com a hora, o print da tela e o que eu pedi com as minhas palavras ([abre direto](./process-log/))
+- **Chat export** — a conversa exata desses momentos, extraída do transcript da sessão do Claude Code ([ver](./process-log/chat-export/CONVERSA-NOS-MOMENTOS-DE-DECISAO.md))
+- **30 screenshots** da sessão gravada, baixáveis ([pasta](./process-log/screenshots/)), mais uma [galeria em HTML](./process-log/linha-do-tempo.html) para abrir no computador
+- **Narrativa escrita** ([COMO-TRABALHEI.md](./process-log/COMO-TRABALHEI.md)) e o **histórico de commits** desta branch, com o motivo de cada decisão na mensagem
+- **Os 14 scripts** com a saída bruta salva, reproduzíveis a partir de `solution/`
+
+A sessão gerou 8.058 prints; publiquei 30. Em 5 deles o painel direito do terminal mostrava uma lista de atalhos pessoais com endereços de e-mail — foram cortados para o painel da esquerda, onde está o trabalho.
 
 ---
 
