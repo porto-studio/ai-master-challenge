@@ -19,7 +19,7 @@ A-db5e9e   S-23587d   início 2024-12-28   fim (vazio)      churn_flag False
 
 A conta `A-0b0d6d` abre **8 assinaturas no mesmo 31/12/2024**, uma delas encerrada no próprio dia.
 
-A diferença de 1 conta não muda conclusão nenhuma. **Mas a causa dela é o achado central do relatório:** quando uma regra de desempate legítima muda a resposta, o problema não é o script — é a definição de churn da empresa.
+Pelo mesmo motivo, o número de contas que aparecem nas **três** definições de churn ao mesmo tempo sai **6** no relatório e **7** no cruzamento. A diferença de 1 conta não muda conclusão nenhuma. **Mas a causa dela é o achado central do relatório:** quando uma regra de desempate legítima muda a resposta, o problema não é o script — é a definição de churn da empresa.
 
 ---
 

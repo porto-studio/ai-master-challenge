@@ -1200,11 +1200,11 @@ function downloadText(text, filename) {
   URL.revokeObjectURL(url);
 }
 
-// ---------- aba "Origem do Churn" — reproduz o relatório em PDF, ao vivo, pelo filtro atual ----------
+// ---------- aba "Origem do Churn" — reproduz, ao vivo e pelo filtro atual, a primeira análise escrita ----------
 // Metodologia própria desta aba (diferente do funil de faturamento acima, que rastreia
 // evento a evento linha por linha): aqui cada churn_event é ligado à subscription cancelada
 // (churn_flag=true) da MESMA conta cuja end_date fica mais perto da churn_date — é o mesmo
-// método usado no relatório em PDF, pra dar pra comparar número com número.
+// método usado naquela primeira análise, pra dar pra comparar número com número.
 
 function fmtPct(n, digits) {
   if (n === null || n === undefined || isNaN(n)) return "—";
@@ -1630,7 +1630,7 @@ function renderChurnOrigin(scopedAccounts, scopedSubs, scopedChurnEvents, scoped
 
   // 7. conclusão (recalculada a partir dos mesmos achados do sumário)
   document.getElementById("originConclusion").innerHTML = `
-    <div class="callout-box">Esta aba usa a MESMA metodologia do relatório em PDF entregue antes (churn_event ligado à subscription cancelada mais próxima por data), aplicada ao recorte atual do filtro/funil. Se os números aqui baterem com os do PDF quando o filtro estiver em "todas as 500 contas", a conta está correta. Mude o filtro pra ver como cada achado se comporta em cada fatia da base — é a forma de conferir, na prática, tudo que foi dito no relatório.</div>`;
+    <div class="callout-box">Esta aba usa a MESMA metodologia da primeira análise escrita (churn_event ligado à subscription cancelada mais próxima por data), aplicada ao recorte atual do filtro/funil — é assim que dá pra conferir número por número. Aquela primeira análise era um PDF de 14/09/2026 que não está publicado nesta pasta: parte das conclusões dela foi corrigida depois, e o que valeu está em solution/RELATORIO_DIAGNOSTICO_CHURN.md (a correção está contada em process-log/COMO-TRABALHEI.md, §6.1). Mude o filtro pra ver como cada achado se comporta em cada fatia da base.</div>`;
 }
 
 // ---------- início ----------

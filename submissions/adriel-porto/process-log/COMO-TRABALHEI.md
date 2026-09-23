@@ -112,7 +112,7 @@ Deixei o modelo que falhou dentro da entrega, com o resultado à mostra (relató
 
 **2. Medi cancelamento por valor, não por quantidade.** É a diferença entre "perdemos 101 assinaturas pequenas" e "perdemos 67 assinaturas que valem 59% de todo o dinheiro que saiu".
 
-**3. Testei a ferramenta antes de acreditar nela** (item 3), e conciliei as três análises em `docs/CONCILIACAO-DOS-NUMEROS.md` em vez de escolher a versão mais conveniente de cada número.
+**3. Testei a ferramenta antes de acreditar nela** (item 3), e conciliei as duas análises em `docs/CONCILIACAO-DOS-NUMEROS.md` em vez de escolher a versão mais conveniente de cada número.
 
 **4. Disse o que os dados NÃO sustentam.** O relatório tem uma lista explícita de "o que não fazer": não cortar canal de aquisição, não mexer em preço por país ou setor, não tratar upgrade como sinal de churn. Nenhum passou nos testes. Recomendar isso com p > 0,05 seria vender decisão baseada em ruído.
 
