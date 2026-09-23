@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diagnóstico de Cancelamentos (Churn) 4.0 — Origem — RavenStack</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style2.css" />
+<link rel="stylesheet" href="style3.css" />
+</head>
+<body>
+  <header>
+    <h1>Diagnóstico de Cancelamentos (Churn) 4.0 — Origem — RavenStack</h1>
+    <p class="sub">Cópia do dashboard 003 (funil) com uma aba nova, "Origem do Churn", que recalcula ao vivo — pelos filtros abaixo — os mesmos achados da primeira análise escrita (um PDF de 14/09/2026 que não está publicado nesta pasta: parte das conclusões dele foi corrigida depois — ver <code>docs/CONCILIACAO-DOS-NUMEROS.md</code>, item 5), na mesma ordem, pra você conferir. Dados sempre lidos como estão nos CSVs carregados. Nada aqui altera os arquivos — só leitura, cálculo e exibição.</p>
+  </header>
+
+  <section id="dataBar">
+    <div id="dataStatus">Carregando os 5 arquivos originais...</div>
+    <div class="data-actions">
+      <button id="reloadBtn">Recarregar arquivos originais</button>
+      <button id="clearBtn">Remover dados carregados</button>
+      <label class="file-label small">
+        <input type="file" id="manualFile" accept=".csv" multiple />
+        Importar CSVs manualmente
+      </label>
+      <button id="downloadRawBtn">Baixar dados brutos (como estão)</button>
+      <button id="downloadFilteredBtn">Baixar dados formatados/filtrados</button>
+    </div>
+  </section>
+
+  <div id="funnelBox" class="trend-card" hidden>
+    <h3>Funil de segmentação — cada coluna salva filtra quem sobrou da coluna anterior</h3>
+    <p class="hint">O editor abaixo sempre filtra a população da ÚLTIMA coluna salva (ou de todas as 500 contas, se ainda não salvou nenhuma). Ajuste, confira o resultado nas abas, e clique em "Salvar coluna" pra travar esse recorte e continuar filtrando o que sobrou.</p>
+    <div id="funnelColumns" class="funnel-columns"></div>
+    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button id="undoFunnelStage">Desfazer última coluna</button>
+      <button id="resetFunnel">Reiniciar funil (voltar pras 500 contas)</button>
+    </div>
+  </div>
+
+  <details id="accountFiltersBox" class="trend-card" hidden open>
+    <summary style="cursor:pointer; font-weight:700; font-size:15px;">Editor de filtro (aplica sobre a população atual do funil)</summary>
+
+    <div style="margin-top:14px;">
+      <label style="font-weight:700; font-size:13px; color:var(--accent);">Cliente específico (opcional)</label><br/>
+      <input type="search" id="singleAccountInput" list="accountSearchList" placeholder="Digite o nome ou account_id da conta..." style="margin-top:6px; width:100%; max-width:420px; padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:var(--panel-2); color:var(--text);" />
+      <datalist id="accountSearchList"></datalist>
+      <button id="clearSingleAccount" style="margin-left:8px;">Limpar seleção</button>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div style="font-weight:700; font-size:13px; color:var(--accent); margin-bottom:6px;">Verdadeiro / falso — escolha Sim, Não ou Todos (nunca os dois ao mesmo tempo)</div>
+      <div id="booleanFilterList" style="display:flex; flex-wrap:wrap; gap:20px;"></div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div style="font-weight:700; font-size:13px; color:var(--accent); margin-bottom:6px;">Categorias — pode marcar mais de um valor</div>
+      <div id="accountFilterList" style="display:flex; flex-wrap:wrap; gap:20px;"></div>
+    </div>
+
+    <button id="resetAccountFilters" style="margin-top:14px;">Limpar o editor (não mexe nas colunas já salvas)</button>
+    <div id="filterSummary" class="hint" style="margin-top:10px;"></div>
+
+    <div style="margin-top:18px; border-top:1px solid var(--border); padding-top:14px;">
+      <div style="font-weight:700; font-size:13px; color:var(--accent); margin-bottom:8px;">Filtros prontos (segmentos da análise)</div>
+      <div id="presetButtons" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button id="saveFunnelStage">Salvar coluna →</button>
+    </div>
+  </details>
+
+  <nav id="tabs" hidden>
+    <button class="tab-btn active" data-tab="sumario">Sumário</button>
+    <button class="tab-btn" data-tab="origem">Origem do Churn</button>
+    <button class="tab-btn" data-tab="faturamento">Faturamento mensal</button>
+    <button class="tab-btn" data-tab="novos">Novos clientes</button>
+    <button class="tab-btn" data-tab="cancelamentos">Cancelamentos por valor</button>
+    <button class="tab-btn" data-tab="qualidade">Qualidade de dados</button>
+    <button class="tab-btn" data-tab="brutos">Dados brutos sem filtro</button>
+  </nav>
+
+  <main id="app" hidden>
+
+    <section id="tab-sumario" class="tab-panel active">
+      <div class="kpi-grid" id="snapshotKpis"></div>
+      <div class="charts-row">
+        <div class="chart-card pie-card">
+          <h3>Situação da carteira agora, dentro do filtro atual</h3>
+          <div class="chart-canvas-wrap pie-canvas"><canvas id="statusPieChart"></canvas></div>
+        </div>
+        <div class="chart-card" style="flex:2;">
+          <h3>Faturamento mensal recorrente (MRR) ao longo do tempo — saldo acumulado</h3>
+          <div class="chart-canvas-wrap"><canvas id="mrrTrendChart"></canvas></div>
+        </div>
+      </div>
+      <div class="kpi-grid" id="kpiGrid"></div>
+    </section>
+
+    <section id="tab-origem" class="tab-panel">
+      <p class="hint">Mesma ordem daquela primeira análise: 1) sumário, 2) integração das tabelas, 3) panorama financeiro, 4) onde o dinheiro sai, 5) sinais de comportamento, 6) tendência no tempo, 7) conclusão. Tudo abaixo (exceto a seção 2, que é sobre os arquivos inteiros) recalcula sozinho quando você muda o filtro ou o funil no topo da página.</p>
+
+      <h3 class="origin-h">1 · Sumário executivo <span class="term-ref">(calculado ao vivo pro filtro atual)</span></h3>
+      <div id="originExecSummary"></div>
+
+      <h3 class="origin-h">2 · Como as tabelas se integram <span class="term-ref">(sempre sobre os arquivos inteiros carregados, não muda com o filtro)</span></h3>
+      <p class="hint">Se você importar seus próprios CSVs (botão "Importar CSVs manualmente" no topo), esta tabela mostra se as chaves ainda batem — é o mesmo teste de integridade daquela primeira análise, rodado contra os arquivos que estiverem carregados agora.</p>
+      <div class="table-wrap"><div class="table-scroll"><table id="originJoinTable"></table></div></div>
+      <div id="originJoinNotes"></div>
+
+      <h3 class="origin-h">3 · Panorama financeiro do churn <span class="term-ref">(dentro do filtro atual)</span></h3>
+      <div class="kpi-grid" id="originFinanceKpis"></div>
+      <div class="trend-card">
+        <h4 style="margin:0 0 10px;">Por motivo declarado (reason_code)</h4>
+        <div id="originReasonBars"></div>
+      </div>
+
+      <h3 class="origin-h">4 · Onde o dinheiro está saindo</h3>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">Por setor (industry)</h4>
+        <div class="table-scroll"><table id="originIndustryTable"></table></div>
+      </div>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">Por plano (plan_tier)</h4>
+        <div class="table-scroll"><table id="originPlanTable"></table></div>
+      </div>
+      <div class="trend-card">
+        <h4 style="margin:0 0 10px;">Por canal de aquisição (referral_source)</h4>
+        <div id="originReferralBars"></div>
+      </div>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">Por país</h4>
+        <div class="table-scroll"><table id="originCountryTable"></table></div>
+      </div>
+
+      <h3 class="origin-h">5 · Sinais de comportamento antes do cancelamento</h3>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">O que acontece pouco antes do churn</h4>
+        <div class="table-scroll"><table id="originPrecedentsTable"></table></div>
+      </div>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">Suporte: contas que cancelam vs. contas ativas</h4>
+        <div class="table-scroll"><table id="originSupportTable"></table></div>
+      </div>
+      <div class="table-wrap">
+        <h4 style="margin-top:0;">Uso do produto: assinaturas canceladas vs. ativas</h4>
+        <div class="table-scroll"><table id="originUsageTable"></table></div>
+      </div>
+
+      <h3 class="origin-h">6 · Tendência ao longo do tempo — bruto vs. normalizado</h3>
+      <div class="table-wrap">
+        <div class="table-scroll"><table id="originTrendTable"></table></div>
+      </div>
+
+      <h3 class="origin-h">7 · Conclusão</h3>
+      <div id="originConclusion"></div>
+    </section>
+
+    <section id="tab-faturamento" class="tab-panel">
+      <p class="hint">Cada assinatura é comparada com a anterior da mesma conta para saber se foi entrada nova, upgrade, downgrade ou cancelamento — e isso é datado no dia exato do evento (start_date / end_date), não num valor fixo por assinatura.</p>
+
+      <div class="trend-card">
+        <h3>Linha do tempo — passe o mouse pra ver o valor exato de cada mês</h3>
+        <div id="trendLegend" class="legend-chips"></div>
+        <div class="chart-canvas-wrap trend-canvas"><canvas id="trendChart"></canvas></div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Movimento mensal de receita, empilhado (Novo + Expansão − Contração − Cancelado)</h3>
+        <div class="chart-canvas-wrap"><canvas id="bridgeChart"></canvas></div>
+      </div>
+
+      <div class="table-wrap">
+        <h3>Faturamento total do mês = Novo + Recorrente (confere sozinho)</h3>
+        <p class="hint">Total = soma do mrr de todas as contas ativas naquele mês. "Novo" é a fatia de contas cujo primeiro mês de vida é esse mês; "Recorrente" é o resto. A soma bate com o Total por construção — serve de conferência.</p>
+        <div class="table-scroll"><table id="revenueSplitTable"></table></div>
+      </div>
+      <div class="table-wrap">
+        <h3>Tabela mensal</h3>
+        <div class="table-scroll"><table id="bridgeTable"></table></div>
+      </div>
+    </section>
+
+    <section id="tab-novos" class="tab-panel">
+      <div class="toggle-row">
+        <label><input type="checkbox" id="includeTrial" /> Incluir clientes em teste gratuito <span class="term-ref">(trial)</span> nesta visão</label>
+      </div>
+      <div class="chart-card">
+        <h3>Novos clientes por mês (entrada real, sem trial por padrão)</h3>
+        <div class="chart-canvas-wrap"><canvas id="newCustomersChart"></canvas></div>
+      </div>
+      <div class="table-wrap">
+        <h3>Novos clientes por mês, por plano</h3>
+        <div class="table-scroll"><table id="newCustomersTable"></table></div>
+      </div>
+    </section>
+
+    <section id="tab-cancelamentos" class="tab-panel">
+      <p class="hint">Ordenado por valor perdido (MRR), não por quantidade de contas — o objetivo é achar de onde vem o maior prejuízo, não só quem cancelou mais.</p>
+      <div class="kpi-grid" id="churnValueKpis"></div>
+      <div class="table-wrap">
+        <h3>Contas que cancelaram, por valor perdido (maior primeiro)</h3>
+        <div class="table-scroll"><table id="churnRankTable"></table></div>
+      </div>
+    </section>
+
+    <section id="tab-qualidade" class="tab-panel">
+      <p class="hint">Só avisos. Nenhum dado é alterado aqui — é pra você decidir o que fazer com cada caso.</p>
+      <div class="kpi-grid" id="qualityKpis"></div>
+      <div class="table-wrap">
+        <h3>Ocorrências encontradas</h3>
+        <div class="table-scroll"><table id="qualityTable"></table></div>
+      </div>
+    </section>
+
+    <section id="tab-brutos" class="tab-panel">
+      <label>Escolher tabela:
+        <select id="rawTableSelect">
+          <option value="accounts">Contas (accounts)</option>
+          <option value="subscriptions">Assinaturas (subscriptions)</option>
+          <option value="feature_usage">Uso do produto (feature_usage)</option>
+          <option value="support_tickets">Chamados de suporte (support_tickets)</option>
+          <option value="churn_events">Eventos de cancelamento (churn_events)</option>
+        </select>
+      </label>
+      <div class="table-wrap">
+        <h3>Primeiras 200 linhas, sem nenhum filtro</h3>
+        <div class="table-scroll"><table id="rawTable"></table></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app4.js"></script>
+</body>
+</html>

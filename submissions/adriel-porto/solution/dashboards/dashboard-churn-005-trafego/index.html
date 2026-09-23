@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Origem do Tráfego vs Churn — RavenStack</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+  <header>
+    <h1>Origem do Tráfego vs Churn — a análise que vem antes da tabela</h1>
+    <p class="sub">Dados sempre lidos como estão nos 5 CSVs originais. Nada aqui altera os arquivos. Investimento em tráfego é um valor SIMULADO por você — não existe no dataset.</p>
+  </header>
+
+  <section id="dataBar">
+    <div id="dataStatus">Carregando os 5 arquivos originais...</div>
+    <div class="data-actions">
+      <button id="reloadBtn">Recarregar arquivos originais</button>
+    </div>
+  </section>
+
+  <div class="trend-card">
+    <h3>Por que essa análise deveria vir antes da tabela de churn</h3>
+    <p class="hint" style="font-size:13px; line-height:1.6;">
+      <strong>Premissa central:</strong> antes de confiar em qualquer número da tabela de churn, a pergunta anterior é <em>de onde veio esse cliente</em>. Se a origem de captação estiver marcada errado, todo o resto do resultado está errado — esse fator pode mudar o resultado inteiro. Numa situação real de empresa, o ideal seria começar por aqui, não pela tabela.
+      <br/><br/>
+      <strong>Por que não foi feito assim nesta entrega:</strong> a análise da tabela de assinaturas já estava em andamento quando esse ponto foi levantado, e concluí-la primeiro foi mais rápido do que parar e recomeçar. Fica registrado que essa NÃO é a ordem ideal — o ideal é investigar a origem/atribuição do tráfego antes de qualquer análise da tabela, exceto quando (como aqui) a análise já em andamento é mais rápida de terminar do que reiniciar o processo.
+      <br/><br/>
+      Este dataset (RavenStack) só tem o campo <code>referral_source</code> (organic, ads, event, partner, other) — sem investimento, canal, UTM ou tracking por evento. Se está marcado "ads", é muito provável que veio de investimento em tráfego pago — só não sabemos quanto. Esse valor pode ser baixo e irrelevante pra análise, ou pode influenciar todo o resultado, inclusive ao ponto de inverter a conclusão. <strong>Por isso essa investigação precisa vir primeiro.</strong>
+      <br/><br/>
+      Canal influencia diretamente qualidade do público e churn: quem vem do Google geralmente tem mais urgência (buscou ativamente, tem o problema de verdade, tende a ficar); quem vem de Facebook/Instagram é mais curioso (pode comprar sem ter o problema real, cancela rápido). E a marcação de origem pode estar errada: um clique em anúncio hoje pode virar compra "organic" um mês depois em outro dispositivo — nesse caso o tráfego pago pode estar bancando resultado que aparece como orgânico.
+    </p>
+  </div>
+
+  <main id="app" hidden>
+
+    <div class="table-wrap">
+      <h3>Faturamento real por origem (dado real, sem simulação)</h3>
+      <div class="table-scroll"><table id="originTable"></table></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-canvas-wrap"><canvas id="originPie"></canvas></div>
+    </div>
+
+    <div class="trend-card">
+      <h3>Simulador — quanto investimento em Ads faria sentido, dado o retorno real</h3>
+      <p class="hint">Isso é hipotético: você digita o investimento mensal, a ferramenta calcula em cima do faturamento REAL do segmento "ads" no período coberto pelo dataset.</p>
+      <label>Investimento mensal simulado em Ads (US$):
+        <input type="number" id="adSpendInput" value="50000" min="0" step="1000" style="padding:6px 10px; border-radius:6px; border:1px solid var(--border); background:var(--panel-2); color:var(--text); width:160px;" />
+      </label>
+      <div class="kpi-grid" id="simKpis" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="trend-card">
+      <h3>Cenário A x Cenário B — o que muda se a atribuição estiver errada</h3>
+      <p class="hint">Cenário A: os dados como estão marcados (ads separado de organic). Cenário B: simulação em que o "organic" é, na verdade, tráfego pago mal atribuído — todo esse faturamento passa a contar como resultado do Ads, com o MESMO investimento simulado.</p>
+      <div class="table-scroll"><table id="scenarioTable"></table></div>
+    </div>
+
+  </main>
+
+  <script src="app5.js"></script>
+</body>
+</html>

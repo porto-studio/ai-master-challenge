@@ -1,0 +1,63 @@
+/* aba "Origem do Churn" — componentes novos, reaproveitando as variáveis --bg/--panel/etc de style.css */
+
+.origin-h {
+  margin: 30px 0 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+}
+.origin-h:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.callout-box {
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  background: var(--panel);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.callout-box.insight { border-left-color: var(--accent); }
+.callout-box.good { border-left-color: var(--accent-2); }
+.callout-box.warn { border-left-color: #f0b45c; }
+.callout-box b { color: var(--text); }
+
+.origin-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 7px 0;
+}
+.origin-bar-label {
+  width: 170px;
+  flex-shrink: 0;
+  font-size: 12.5px;
+  color: var(--text);
+}
+.origin-bar-track {
+  flex: 1;
+  background: var(--panel-2);
+  border-radius: 4px;
+  height: 16px;
+  overflow: hidden;
+}
+.origin-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+}
+.origin-bar-fill.red { background: var(--danger); }
+.origin-bar-fill.orange { background: #f0b45c; }
+.origin-bar-fill.green { background: var(--accent-2); }
+.origin-bar-val {
+  width: 150px;
+  flex-shrink: 0;
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.origin-highlight { color: var(--accent-2); font-weight: 700; }
+.origin-highlight.bad { color: var(--danger); }
