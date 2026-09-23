@@ -1,0 +1,371 @@
+
+################ 01_integridade.py
+linhas: {'accounts': 500, 'subscriptions': 5000, 'feature_usage': 25000, 'support_tickets': 2000, 'churn_events': 600}
+
+-- chaves / orfaos --
+feature_usage.subscription_id sem par em subscriptions: 0
+support_tickets.account_id sem par em accounts: 0
+subscriptions.account_id sem par em accounts: 0
+churn_events.account_id sem par em accounts: 0
+subscription_id duplicado em subscriptions: 0
+usage_id duplicado: 21 | ticket_id duplicado: 0
+
+-- cobertura por conta --
+contas totais: 500
+contas com >=1 uso (feature_usage): 500
+contas com >=1 ticket: 492
+contas com uso E ticket: 492
+contas SEM nenhum uso: 0
+contas SEM nenhum ticket: 8
+assinaturas com >=1 uso: 4967 de 5000
+
+-- janelas de data --
+feature_usage.usage_date: min=2023-01-01 00:00:00 max=2024-12-31 00:00:00 nulos=0
+support_tickets.submitted_at: min=2023-01-02 00:00:00 max=2024-12-31 00:00:00 nulos=0
+subscriptions.start_date: min=2023-01-09 00:00:00 max=2024-12-31 00:00:00 nulos=0
+subscriptions.end_date: min=2023-04-05 00:00:00 max=2024-12-31 00:00:00 nulos=4514
+churn_events.churn_date: min=2023-01-25 00:00:00 max=2024-12-31 00:00:00 nulos=0
+
+-- nulos relevantes --
+support_tickets.satisfaction_score nulos: 825 (41.2%)
+support_tickets.closed_at nulos: 0
+support_tickets.resolution_time_hours nulos: 0
+feature_usage nulos por coluna:
+ usage_id               0
+subscription_id        0
+usage_date             0
+feature_name           0
+usage_count            0
+usage_duration_secs    0
+error_count            0
+is_beta_feature        0
+account_id             0
+dtype: int64
+
+-- definicoes de churn --
+D1 accounts.churn_flag=True: 110
+D2 tem >=1 churn_event: 352
+D3 assinatura mais recente ja terminou: 46
+D1&D2: 75 | D1&D3: 12 | D2&D3: 34 | D1&D2&D3: 7
+
+################ 02_painel_conta.py
+### MEDIA por conta — churn vs nao-churn, nas 3 definicoes
+
+--- D1_churn_flag ---
+                        ficou(n=390)  churn(n=110)   dif_%
+uso_eventos                   39.431        42.209   7.046
+uso_count                    395.069       422.955   7.058
+uso_dias_ativos               38.046        40.673   6.904
+uso_por_100d                 402.925       362.089 -10.135
+uso_features_distintas        23.623        24.482   3.635
+taxa_erro                      0.058         0.056  -4.192
+uso_erros                     22.903        22.809  -0.408
+dias_desde_ultimo_uso         16.408        13.655 -16.780
+tk_n                           3.233         3.209  -0.750
+tk_por_100d                   35.990        22.963 -36.197
+tk_por_1000_usos               9.603         9.524  -0.815
+tk_escal                       0.131         0.182  39.037
+tk_res_h                      36.240        36.057  -0.504
+tk_frt_min                    88.820        86.170  -2.983
+tk_sat                         3.953         3.989   0.899
+dias_obs                     154.905       195.900  26.465
+
+--- D2_churn_event ---
+                        ficou(n=148)  churn(n=352)    dif_%
+uso_eventos                   49.331        36.136  -26.747
+uso_count                    494.743       361.875  -26.856
+uso_dias_ativos               47.628        34.838  -26.854
+uso_por_100d                  57.403       535.439  832.768
+uso_features_distintas        27.257        22.364  -17.952
+taxa_erro                      0.057         0.058    1.924
+uso_erros                     27.757        20.832  -24.947
+dias_desde_ultimo_uso         16.757        15.401   -8.093
+tk_n                           4.088         2.866  -29.878
+tk_por_100d                    5.981        44.537  644.623
+tk_por_1000_usos               9.487         9.627    1.472
+tk_escal                       0.162         0.134  -17.661
+tk_res_h                      36.247        36.178   -0.189
+tk_frt_min                    88.041        88.318    0.315
+tk_sat                         3.970         3.956   -0.349
+dias_obs                     305.216       104.517  -65.756
+
+--- D3_ult_assin_encerrada ---
+                        ficou(n=454)  churn(n=46)   dif_%
+uso_eventos                   39.650       43.913  10.752
+uso_count                    397.282      439.913  10.731
+uso_dias_ativos               38.251       42.304  10.596
+uso_por_100d                 420.834      128.516 -69.462
+uso_features_distintas        23.672       25.196   6.437
+taxa_erro                      0.058        0.058  -0.074
+uso_erros                     22.672       24.957  10.077
+dias_desde_ultimo_uso         15.971       14.130 -11.526
+tk_n                           3.211        3.391   5.600
+tk_por_100d                   35.272       11.933 -66.167
+tk_por_1000_usos               9.614        9.302  -3.246
+tk_escal                       0.139        0.174  25.328
+tk_res_h                      36.109       37.119   2.796
+tk_frt_min                    87.625       94.404   7.736
+tk_sat                         3.957        4.006   1.252
+dias_obs                     163.932      163.848  -0.051
+
+### MEDIANA (mesmas colunas), definicao D2
+                          ficou    churn    dif_%
+uso_eventos              49.000   35.000  -28.571
+uso_count               495.500  349.000  -29.566
+uso_dias_ativos          48.000   34.000  -29.167
+uso_por_100d             16.879   61.320  263.289
+uso_features_distintas   28.000   23.000  -17.857
+taxa_erro                 0.054    0.055    1.263
+uso_erros                27.000   20.000  -25.926
+dias_desde_ultimo_uso    11.000    8.000  -27.273
+tk_n                      4.000    3.000  -25.000
+tk_por_100d               1.392    4.167  199.383
+tk_por_1000_usos          8.332    7.782   -6.596
+tk_escal                  0.000    0.000      NaN
+tk_res_h                 36.000   35.900   -0.278
+tk_frt_min               84.500   88.600    4.852
+tk_sat                    4.000    4.000    0.000
+dias_obs                295.000   49.000  -83.390
+
+################ 03_janela_fixa_e_testes.py
+
+================ JANELA FIXA DE 90 DIAS ANTES DO EVENTO (churn = 1o churn_event; quem ficou = 31/12/2024)
+contas churn=352 | ficou=148
+                  ficou_media  churn_media  dif_pct  ficou_mediana  churn_mediana  p_mannwhitney
+metrica                                                                                         
+uso_ev                 6.3649       6.3011  -1.0013         6.0000         6.0000         0.6086
+uso_count             63.9595      62.7670  -1.8643        59.0000        58.0000         0.5379
+dias_ativos            6.0743       6.0881   0.2263         6.0000         6.0000         0.7868
+feats                  5.8919       5.8153  -1.2993         6.0000         5.0000         0.6315
+erros                  3.1622       3.5398  11.9415         3.0000         3.0000         0.6352
+taxa_erro              0.0527       0.0593  12.3892         0.0455         0.0455         0.6380
+beta_ev                0.7162       0.5625 -21.4623         1.0000         0.0000         0.0631
+tk_n                   0.5203       0.5284   1.5643         0.0000         0.0000         0.7608
+tk_escal               0.0270       0.0199 -26.4205         0.0000         0.0000         0.6205
+tk_alta_prio           0.2838       0.2756  -2.8950         0.0000         0.0000         0.8856
+tk_res_h              33.9389      34.2867   1.0247        30.7500        33.0000         0.9850
+tk_frt                84.7917      86.8622   2.4419        74.9167        80.0000         0.6857
+tk_sat                 3.9762       4.0490   1.8316         4.0000         4.0000         0.5912
+tk_por_1000_usos      10.2990      12.4087  20.4846         0.0000         0.0000         0.6387
+
+================ JANELA FIXA DE 180 DIAS ANTES DO EVENTO (churn = 1o churn_event; quem ficou = 31/12/2024)
+contas churn=352 | ficou=148
+                  ficou_media  churn_media  dif_pct  ficou_mediana  churn_mediana  p_mannwhitney
+metrica                                                                                         
+uso_ev                12.1689      12.2045   0.2928        12.0000        12.0000         0.9800
+uso_count            121.9595     121.6193  -0.2789       122.0000       117.0000         0.8790
+dias_ativos           11.7230      11.7983   0.6425        11.0000        11.0000         0.8619
+feats                 10.4324      10.4119  -0.1965        10.0000        10.0000         0.8712
+erros                  6.5338       6.7926   3.9614         6.0000         6.0000         0.6247
+taxa_erro              0.0563       0.0579   2.9094         0.0524         0.0536         0.6914
+beta_ev                1.2297       1.1818  -3.8961         1.0000         1.0000         0.7470
+tk_n                   0.9865       1.0057   1.9458         1.0000         1.0000         0.6811
+tk_escal               0.0405       0.0511  26.1364         0.0000         0.0000         0.6139
+tk_alta_prio           0.4797       0.5341  11.3316         0.0000         0.0000         0.5531
+tk_res_h              34.8750      35.8451   2.7818        31.0833        36.7500         0.7170
+tk_frt                88.7543      85.9972  -3.1065        86.8333        84.7500         0.6889
+tk_sat                 4.0274       3.9910  -0.9025         4.0000         4.0000         0.6954
+tk_por_1000_usos       9.9025      10.9414  10.4905         6.8027         7.4350         0.5168
+
+-- proporcoes na janela de 90 dias --
+sem NENHUM uso: ficou 0.7% | churn 1.1% | p(qui-quadrado)=1.0000
+sem NENHUM ticket: ficou 59.5% | churn 57.4% | p(qui-quadrado)=0.7418
+
+################ 04_uso_x_tickets.py
+========== A) VOLUME: erros de uso x volume de tickets (por conta, vida toda)
+Spearman erros      x tk_n     : rho=-0.010  p=0.8162  (n=500)
+Spearman uso_count  x tk_n     : rho=-0.048  p=0.2817  (n=500)
+Spearman uso_ev     x tk_n     : rho=-0.039  p=0.3786  (n=500)
+Spearman taxa_erro  x tk_n     : rho=+0.056  p=0.2146  (n=500)
+Spearman erros      x tk_escal : rho=+0.067  p=0.1322  (n=500)
+Spearman erros      x tk_alta  : rho=-0.012  p=0.7885  (n=500)
+Spearman taxa_erro  x tk_sat   : rho=-0.027  p=0.5545  (n=466)
+Spearman beta_ev    x tk_n     : rho=-0.000  p=0.9996  (n=500)
+Spearman uso_count  x tk_sat   : rho=+0.011  p=0.8191  (n=466)
+
+-- quartis de erro acumulado por conta x tickets --
+                contas  erros_medios  uso_count_medio  tickets_medios  escalacoes  satisfacao
+q_erro                                                                                       
+Q1 menos erros     132        13.992          318.326           4.091       0.174       4.003
+Q2                 132        24.030          470.409           3.970       0.167       3.950
+Q3                 119        32.008          560.714           3.908       0.168       3.900
+Q4 mais erros      117        44.991          679.350           4.026       0.256       3.999
+Q1 vs Q4 em tickets: p(Mann-Whitney)=0.9558
+
+========== B) TEMPO: houve erro/uso ANTES do ticket? (janela de 7 dias antes de cada ticket)
+tickets analisados: 2000 | datas-placebo sorteadas na mesma conta: 2000
+7 dias antes — eventos: media antes do ticket=0.451 | media em data aleatoria=0.484 | p=0.1323
+7 dias antes — erros: media antes do ticket=0.241 | media em data aleatoria=0.287 | p=0.0519
+7 dias antes — usos: media antes do ticket=4.559 | media em data aleatoria=4.832 | p=0.1690
+tickets sem NENHUM uso nos 7 dias anteriores: 65.0% | placebo: 62.5%
+tickets com ALGUM erro nos 7 dias anteriores: 12.7% | placebo: 14.8%
+
+-- mesma comparacao so para tickets escalados / urgentes --
+escalados: n=95 | erros 7d antes=0.368 (geral 0.241, placebo 0.287) | p vs placebo=0.1698
+high+urgent: n=1024 | erros 7d antes=0.239 (geral 0.241, placebo 0.287) | p vs placebo=0.1563
+
+========== C) POR FEATURE: uso nos 7 dias antes dos tickets vs participacao no uso total
+features com maior sobre-representacao nos 7 dias antes de um ticket (top 8):
+              share_pre_ticket_%  share_uso_geral_%  dif_pp  n_pre_ticket
+feature_name                                                             
+feature_33                 3.437              2.530   0.907            31
+feature_14                 3.215              2.402   0.813            29
+feature_11                 3.326              2.570   0.756            30
+feature_24                 3.326              2.570   0.756            30
+feature_7                  3.215              2.474   0.741            29
+feature_2                  3.215              2.566   0.649            29
+feature_12                 3.215              2.634   0.581            29
+feature_10                 3.104              2.534   0.570            28
+
+features com maior sub-representacao (top 5):
+              share_pre_ticket_%  share_uso_geral_%  dif_pp  n_pre_ticket
+feature_name                                                             
+feature_36                 1.552              2.590  -1.038            14
+feature_34                 1.663              2.602  -0.939            15
+feature_32                 1.774              2.634  -0.860            16
+feature_16                 1.774              2.490  -0.716            16
+feature_31                 1.996              2.578  -0.583            18
+
+beta: 12.75% dos eventos nos 7d antes de ticket sao beta | 10.18% no uso geral
+
+========== D) ERRO POR FEATURE (feature_usage isolado) — top e bottom por taxa de erro
+              eventos  usos  erros  taxa_erro_%
+feature_name                                   
+feature_4         625  6374    418        6.558
+feature_9         623  6202    401        6.466
+feature_26        648  6457    417        6.458
+feature_16        622  6273    396        6.313
+feature_18        588  5850    369        6.308
+              eventos  usos  erros  taxa_erro_%
+feature_name                                   
+feature_20        642  6535    307        4.698
+feature_8         596  6030    284        4.710
+feature_37        636  6380    306        4.796
+taxa de erro global: 5.630% | beta=5.536% vs nao-beta=5.640%
+
+################ 05_segmentos_tempo_auc.py
+========== E) LINHA DO TEMPO MENSAL (checa as 2 falas do CEO: 'uso cresceu' e 'satisfacao ok')
+         uso_eventos  uso_count  contas_ativas_no_uso  erros  tickets  satisfacao_media  escalacoes  churn_events  uso_por_conta_ativa  tickets_por_conta_ativa  taxa_erro_%
+mes                                                                                                                                                                         
+2023-01         1069      10877                   440    592       83              4.02           1           1.0                24.72                     0.19         5.44
+2023-02          970       9492                   412    602       59              4.03           4           0.0                23.04                     0.14         6.34
+2023-03         1102      11021                   431    600       86              3.96           3           5.0                25.57                     0.20         5.44
+2023-04         1030      10347                   432    578       91              3.81           6           3.0                23.95                     0.21         5.59
+2023-05         1076      10748                   438    663       78              4.03           4           3.0                24.54                     0.18         6.17
+2023-06         1012       9992                   420    626       82              4.18           2           5.0                23.79                     0.20         6.27
+2023-07         1074      11074                   414    599       83              3.91           1           6.0                26.75                     0.20         5.41
+2023-08         1040      10335                   426    563       96              3.93           3           7.0                24.26                     0.23         5.45
+2023-09          969       9737                   409    536       93              4.07           5           6.0                23.81                     0.23         5.50
+2023-10         1093      10953                   426    599       75              3.78           4          10.0                25.71                     0.18         5.47
+2023-11          943       9468                   412    478       74              4.22           5          11.0                22.98                     0.18         5.05
+2023-12         1042      10430                   431    647       91              3.93           5          16.0                24.20                     0.21         6.20
+2024-01         1060      10621                   426    614       84              3.89           4          20.0                24.93                     0.20         5.78
+2024-02         1014      10225                   421    594       75              4.02           4          10.0                24.29                     0.18         5.81
+2024-03         1068      10719                   430    589       92              3.73           3          24.0                24.93                     0.21         5.49
+2024-04         1019      10121                   428    605       81              3.81           4          25.0                23.65                     0.19         5.98
+2024-05         1040      10552                   427    613       81              4.15           7          27.0                24.71                     0.19         5.81
+2024-06         1011      10088                   416    539       78              4.00           5          40.0                24.25                     0.19         5.34
+2024-07         1067      10588                   430    656       70              4.00           2          35.0                24.62                     0.16         6.20
+2024-08         1059      10549                   422    555       82              3.96           1          42.0                25.00                     0.19         5.26
+2024-09         1019      10178                   415    564       96              4.36           7          53.0                24.53                     0.23         5.54
+2024-10         1137      11450                   435    570       88              4.02           7          66.0                26.32                     0.20         4.98
+2024-11          990      10031                   410    537       84              3.82           5          68.0                24.47                     0.20         5.35
+2024-12         1075      10726                   428    573       98              3.84           3         117.0                25.06                     0.23         5.34
+
+correlacao mensal (Spearman) uso_por_conta_ativa x tickets_por_conta_ativa: rho=0.124 p=0.5567
+correlacao mensal taxa_erro x tickets_por_conta_ativa: rho=-0.266 p=0.1954
+correlacao mensal tickets_por_conta_ativa x churn_events: rho=0.296 p=0.1456
+primeiros 6 meses vs ultimos 6 meses — uso_count: 62477 -> 63522 | tickets: 479 -> 518 | satisfacao: 4.000 -> 4.009
+
+========== F) QUADRANTE uso x tickets (por conta, vida toda) x churn
+                   contas  churn_D1_pct  churn_D2_pct  churn_D3_pct  mrr_medio  uso_medio  tickets_medios
+uso_baixo tk_alto                                                                                        
+False     False       155         25.16         70.97         12.26    2346.26     655.74            2.79
+          True         95         25.26         70.53         11.58    2830.00     617.71            5.91
+True      False       152         21.71         71.05          4.61    2434.12     360.55            2.78
+          True         98         14.29         68.37          9.18    2204.57     359.15            5.95
+quadrante 'uso baixo + muitos tickets' vs resto, churn D1: p(qui-quadrado)=0.0549
+
+========== G) PODER DE SEPARACAO (AUC) de cada variavel de uso/suporte para prever churn
+             AUC                    p              
+definicao     D1     D2     D3     D1     D2     D3
+variavel                                           
+erros      0.509  0.520  0.587  0.773  0.471  0.052
+tk_escal   0.518  0.523  0.531  0.399  0.216  0.305
+tk_n       0.471  0.486  0.522  0.342  0.625  0.621
+tk_sat     0.520  0.506  0.486  0.540  0.828  0.768
+uso_count  0.540  0.512  0.609  0.196  0.669  0.015
+(AUC 0,50 = mesmo poder de separacao que jogar moeda)
+
+========== H) MESMO CRUZAMENTO DENTRO DE CADA SEGMENTO (plano / canal / trial)
+
+--- por plan_inicial ---
+              contas  uso_medio  erros_medios  tickets_medios  satisfacao  escal_medias  churn_D1_pct  churn_D2_pct
+plan_inicial                                                                                                       
+Basic            168     528.26         29.46            3.75        4.01          0.14         22.02         68.45
+Enterprise       154     489.48         28.23            4.15        3.97          0.19         22.08         70.13
+Pro              178     484.24         26.93            4.11        3.92          0.24         21.91         72.47
+
+--- por canal ---
+         contas  uso_medio  erros_medios  tickets_medios  satisfacao  escal_medias  churn_D1_pct  churn_D2_pct
+canal                                                                                                         
+ads          98     505.27         28.82            4.28        3.84          0.16         23.47         60.20
+event        96     489.03         27.12            3.92        3.91          0.20         30.21         70.83
+organic     114     519.96         29.39            3.84        4.03          0.18         17.54         74.56
+other       103     490.62         27.70            4.19        3.97          0.22         24.27         70.87
+partner      89     494.93         27.64            3.76        4.08          0.19         14.61         75.28
+
+--- por trial ---
+       contas  uso_medio  erros_medios  tickets_medios  satisfacao  escal_medias  churn_D1_pct  churn_D2_pct
+trial                                                                                                       
+False     403     498.31         28.54            3.99        3.93          0.18         21.09         70.72
+True       97     510.33         26.70            4.06        4.11          0.22         25.77         69.07
+
+--- por industria ---
+               contas  uso_medio  erros_medios  tickets_medios  satisfacao  escal_medias  churn_D1_pct  churn_D2_pct
+industria                                                                                                           
+Cybersecurity     100     503.07         27.96            3.94        4.00          0.25         16.00         72.00
+DevTools          113     507.72         28.04            3.76        3.94          0.18         30.97         73.45
+EdTech             79     506.04         28.78            4.00        3.94          0.22         16.46         72.15
+FinTech           112     499.16         27.73            4.08        4.00          0.17         22.32         67.86
+HealthTech         96     487.08         28.61            4.25        3.94          0.15         21.88         66.67
+
+################ 06_direcoes_e_assinatura.py
+========== I) O TICKET DERRUBA O USO DEPOIS? (30 dias antes x 30 dias depois de cada ticket)
+uso medio 30d antes=20.35 | 30d depois=19.66 | variacao=-3.4% | p(Mann-Whitney)=0.2552
+  escalados (n=95): antes=19.80 depois=19.67 (-0.6%) p=0.9158
+  satisfacao 1-2 (n=0): antes=nan depois=nan (+nan%) p=1.0000
+  resolucao > 48h (n=675): antes=21.34 depois=19.40 (-9.1%) p=0.0411
+
+========== J) O TICKET RUIM ANTECEDE CHURN? (houve churn_event na conta ate 90 dias depois do ticket?)
+base: 12.9% dos 2.000 tickets sao seguidos de churn_event em 90 dias
+
+escalado                   n=   95 | churn 90d:  13.7% vs  12.9% nos demais | p=0.9388
+prioridade high/urgent     n= 1024 | churn 90d:  12.9% vs  12.9% nos demais | p=1.0000
+satisfacao 1-2             n=    0 | churn 90d:   nan% vs  12.9% nos demais | p=nan
+satisfacao 4-5             n=  779 | churn 90d:  13.0% vs  12.9% nos demais | p=0.9990
+satisfacao nao respondida  n=  825 | churn 90d:  12.7% vs  13.0% nos demais | p=0.9003
+resolucao > 48h            n=  675 | churn 90d:  12.9% vs  12.9% nos demais | p=1.0000
+1a resposta > 120 min      n=  653 | churn 90d:  13.6% vs  12.5% nos demais | p=0.5442
+
+medias por ticket seguido ou nao de churn em 90d:
+              n  resolucao_h  frt_min  satisfacao  escalacao
+churn_90d                                                   
+False      1742       35.901   88.241       3.975      0.047
+True        258       35.593   90.097       4.026      0.050
+
+========== K) NIVEL ASSINATURA: uso da assinatura que terminou x uso da que continuou
+             ativa(n=4514)  encerrada(n=486)     dif_%  p_MannWhitney
+uso_ev              5.0419            4.9089   -2.6384         0.3538
+uso_count          50.5212           49.2443   -2.5274         0.5032
+erros               2.8439            2.7743   -2.4460         0.5738
+taxa_erro           0.0585            0.0559   -4.5443         0.6546
+dias                5.0256            4.8986   -2.5289         0.3735
+beta                0.5138            0.4948   -3.6983         0.4168
+uso_por_30d        64.0836          161.7363  152.3835         0.0000
+dur_dias          168.7756           88.0823  -47.8110         0.0000
+mrr_amount       2250.6885         2426.2119    7.7987         0.8978
+seats              29.8533           29.8395   -0.0464         0.5569
+
+assinaturas sem NENHUM registro de uso: 33 (ativas 30 / encerradas 3)
+upgrade_flag: ativa 10.7% x encerrada 9.5% | downgrade_flag: 4.3% x 5.1% | auto_renew: 80.1% x 80.2%
