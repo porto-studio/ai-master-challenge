@@ -22,7 +22,7 @@ Esta é a imagem que resume o diagnóstico. O CS diz que a satisfação está ok
 ## Sobre mim
 
 - **Nome:** Adriel Porto
-- **LinkedIn:** <!-- COLAR A URL DO LINKEDIN AQUI -->
+- **LinkedIn:** https://www.linkedin.com/in/adrielportoribeiro/
 - **Challenge escolhido:** 001 — Diagnóstico de Churn
 
 ---

@@ -2,7 +2,6 @@
 
 **Base:** os 5 arquivos do dataset (500 contas, 5.000 assinaturas, 25.000 registros de uso, 2.000 tickets, 600 eventos de churn), de 01/2023 a 31/12/2024.
 **Valores:** em US$. "MRR" = receita mensal recorrente (a mensalidade da assinatura). Todo número deste relatório sai de um script em `scripts/` e de uma tabela em `tabelas/`.
-**Acompanham este relatório:** `cruzamento-uso-x-tickets/RESULTADO_CRUZAMENTO.md` (o cruzamento entre uso e suporte, ~45 testes), `../docs/CONCILIACAO-DOS-NUMEROS.md` (por que alguns números diferem entre os documentos desta submissão) e `COMO-RODAR.md` (como reproduzir cada número).
 
 ---
 
@@ -323,6 +322,8 @@ Saída completa: `saidas_dos_scripts/modelo_out.txt`. Código: `scripts/modelo.p
 ---
 
 ## 8. Arquivos desta pasta
+
+**Acompanham este relatório:** `cruzamento-uso-x-tickets/RESULTADO_CRUZAMENTO.md` (o cruzamento entre uso e suporte, ~45 testes), `../docs/CONCILIACAO-DOS-NUMEROS.md` (por que alguns números diferem entre os documentos desta submissão) e `COMO-RODAR.md` (como reproduzir cada número).
 
 | Arquivo | Conteúdo |
 |---|---|
